@@ -2,23 +2,25 @@ import { useState } from "react";
 import { useAuth } from "../components/contexts/AuthContext";
 import { useNavigate } from "react-router";
 
-function Login() {
+function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loginUser } = useAuth();
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const { registerUser } = useAuth();
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
-        loginUser(email, password)
-            .then(() => navigate("/"))
-            .catch(e => console.log(e.message))
+
+        if (confirmPassword == password) {
+            registerUser(email, password).then(() => navigate("/login"));
+        }
     }
 
     return (
         <div className="login-cont">
             <div className="header-cont">
-                <h1>LOGIN</h1>
+                <h1>Register</h1>
             </div>
 
             <div className="form-cont">
@@ -31,6 +33,10 @@ function Login() {
                         <label htmlFor="password">Password</label>
                         <input type="password" onChange={e => setPassword(e.target.value)} id="password" className="password" />
                     </div>
+                    <div className="confirm-password-field">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" onChange={e => setConfirmPassword(e.target.value)} id="password" className="password" />
+                    </div>
 
                     <div className="form-actions">
                         <a>Forgot Password?</a>
@@ -42,4 +48,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Register
