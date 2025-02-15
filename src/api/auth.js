@@ -1,8 +1,13 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
+import { createUserDb } from "./Firestore";
 
 export const registerUser = async (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password)
+        .then(creds => {
+            console.log(creds);
+            createUserDb(creds.user.uid, { email });
+        });
 }
 
 export const loginUser = async (email, password) => {

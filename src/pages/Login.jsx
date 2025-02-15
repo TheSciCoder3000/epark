@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../components/contexts/AuthContext";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loginUser } = useAuth();
+    const { currentUser, loading, loginUser } = useAuth();
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
@@ -14,6 +14,10 @@ function Login() {
             .then(() => navigate("/"))
             .catch(e => console.log(e.message))
     }
+
+    if (loading) return;
+
+    if (currentUser) return <Navigate to="/" />;
 
     return (
         <div className="login-cont">
