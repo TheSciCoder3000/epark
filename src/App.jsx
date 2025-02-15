@@ -1,10 +1,13 @@
-import { Route, Routes } from 'react-router'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Map from "./pages/Map";
+import Account from "./pages/Account";
+import "./components/styles.css";
 import './App.css'
 import { AuthProvider } from './components/contexts/AuthContext'
 
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -12,8 +15,10 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Home />} />
         </Route>
+        <Route path="/map" element={<Map />} />
+        <Route path="/account" element={<Account />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
