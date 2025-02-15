@@ -11,15 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
     "dotenv": "^16.4.7",
     "firebase": "^11.3.1",
->>>>>>> Stashed changes
-=======
-    "firebase": "^11.3.1",
->>>>>>> 340ebc05251916aa5ccae5092d09c286a964edc1
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.5"
