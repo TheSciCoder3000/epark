@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { FaCar, FaMapMarkedAlt, FaUser } from "react-icons/fa";
-import "./styles.css"; 
+import "./styles.css";
 
 export default function Nav() {
   return (
