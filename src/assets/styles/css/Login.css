@@ -1,0 +1,72 @@
+.login-cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 7rem 0 0 0;
+  color: white;
+  background: linear-gradient(163.63deg, #434732 -12.77%, #231F1E 60.76%);
+}
+.login-cont.register-cont {
+  background: linear-gradient(166.82deg, #3E4152 0%, #231F1E 60.41%);
+}
+.login-cont .header-cont {
+  font-size: 1.3em;
+  margin: 0 0 4rem 0;
+}
+.login-cont .header-cont h1 {
+  font-weight: 500;
+}
+.login-cont .form-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.login-cont .form-cont label,
+.login-cont .form-cont input {
+  display: block;
+}
+.login-cont .form-cont form {
+  width: 18rem;
+}
+.login-cont .form-cont form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.login-cont .form-cont form .form-field label {
+  font-size: 0.8em;
+}
+.login-cont .form-cont form .form-field input {
+  padding: 0.5rem;
+  border: 1px solid #b9b9b9;
+  border-radius: 0.3rem;
+  font-size: 0.95em;
+  width: 100%;
+  background: transparent;
+  box-sizing: border-box;
+  outline: none;
+  padding: 0.85rem 0.7rem;
+  color: white;
+}
+.login-cont .form-cont form .form-actions {
+  padding-top: 2rem;
+}
+.login-cont .form-cont form .form-actions a {
+  display: block;
+  font-size: 0.8em;
+  color: rgb(203, 203, 203);
+}
+.login-cont .form-cont form .form-actions button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.25rem;
+  background-color: #C5EB0D;
+  color: black;
+}
+.login-cont .form-cont form .form-actions button.register-btn {
+  background-color: #D9D9D9;
+}/*# sourceMappingURL=Login.css.map */
