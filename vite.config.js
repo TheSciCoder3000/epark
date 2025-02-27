@@ -13,6 +13,7 @@ export default defineConfig({
         short_name: 'Epark',
         description: 'Online Parking Reservation',
         theme_color: '#ffffff',
+        display: "fullscreen",
         icons: [
           {
             "src": "/pwa-192x192.png",
