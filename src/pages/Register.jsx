@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../components/contexts/AuthContext";
+import { useAuth } from "../components/contexts/useAuth";
 import { useNavigate } from "react-router";
 
 function Register() {
