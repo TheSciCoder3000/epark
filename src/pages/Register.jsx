@@ -18,29 +18,28 @@ function Register() {
     }
 
     return (
-        <div className="login-cont">
+        <div className="register-cont login-cont">
             <div className="header-cont">
                 <h1>Register</h1>
             </div>
 
             <div className="form-cont">
                 <form onSubmit={submitHandler} className="form-main">
-                    <div className="email-field">
+                    <div className="form-field email-field">
                         <label htmlFor="email">Email</label>
                         <input type="text" onChange={e => setEmail(e.target.value)} id="email" className="email" />
                     </div>
-                    <div className="password-field">
+                    <div className="form-field password-field">
                         <label htmlFor="password">Password</label>
                         <input type="password" onChange={e => setPassword(e.target.value)} id="password" className="password" />
                     </div>
-                    <div className="confirm-password-field">
+                    <div className="form-field confirm-password-field">
                         <label htmlFor="password">Password</label>
                         <input type="password" onChange={e => setConfirmPassword(e.target.value)} id="password" className="password" />
                     </div>
 
                     <div className="form-actions">
-                        <a>Forgot Password?</a>
-                        <button className="login-btn" type="submit">LOGIN</button>
+                        <button className="register-btn" type="submit">LOGIN</button>
                     </div>
                 </form>
             </div>
