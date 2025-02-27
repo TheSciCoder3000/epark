@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../components/contexts/AuthContext";
+import { useAuth } from "../components/contexts/useAuth";
 import { Navigate, useNavigate } from "react-router";
+import "../assets/styles/css/Login.css";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -27,11 +28,11 @@ function Login() {
 
             <div className="form-cont">
                 <form onSubmit={submitHandler} className="form-main">
-                    <div className="email-field">
+                    <div className="form-field email-field">
                         <label htmlFor="email">Email</label>
                         <input type="text" onChange={e => setEmail(e.target.value)} id="email" className="email" />
                     </div>
-                    <div className="password-field">
+                    <div className="form-field password-field">
                         <label htmlFor="password">Password</label>
                         <input type="password" onChange={e => setPassword(e.target.value)} id="password" className="password" />
                     </div>

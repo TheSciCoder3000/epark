@@ -3,8 +3,7 @@ import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Account from "./pages/Account";
 import "./components/styles.css";
-// import './App.css'
-import { AuthProvider } from './components/contexts/AuthContext'
+import { AuthProvider } from './components/contexts/AuthProvider'
 
 import Login from './pages/Login'
 import Register from './pages/Register'
