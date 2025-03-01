@@ -1,4 +1,3 @@
-import Nav from "../components/Nav";
 import { useAuth } from "../components/contexts/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +13,6 @@ export default function Account() {
       <h1>👤 Account Section</h1>
       <p>Manage your profile and settings.</p>
       <button onClick={logoutHandler}>Log Out</button>
-      <Nav />
     </div>
   );
 }
