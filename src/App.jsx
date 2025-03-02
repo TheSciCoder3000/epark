@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Account from "./pages/Account";
-import "./components/styles.css";
 import { AuthProvider } from './components/contexts/AuthProvider'
 
 import Login from './pages/Login'
@@ -15,9 +14,9 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/account" element={<Account />} />
         </Route>
-        <Route path="/map" element={<Map />} />
-        <Route path="/account" element={<Account />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
