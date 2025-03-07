@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Account from "./pages/Account";
 import { AuthProvider } from './components/contexts/AuthProvider'
+import DashboardAdmin from "./pages/Admin/DashboardAdmin";
 
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -16,6 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/map" element={<Map />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/DashboardAdmin" element={<DashboardAdmin/>} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
