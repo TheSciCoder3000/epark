@@ -1,10 +1,10 @@
 .login-cont {
     width: 100%;
-    height: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 7rem 0 0 0;
+    padding: 7rem 0 5rem 0;
     color: white;
     background: linear-gradient(163.63deg, #434732 -12.77%, #231F1E 60.76%);
 
@@ -18,6 +18,33 @@
 
         h1 {
             font-weight: 500;
+        }
+    }
+
+    .role-selector-cont {
+        display: flex;
+        width: 18rem;
+        gap: 2rem;
+        margin-bottom: 3rem;
+
+        button {
+            padding: 0.5rem;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            flex: 1;
+        }
+
+        &.User-selected {
+            .user-btn {
+                border-bottom: 2px solid white;
+            }
+        }
+
+        &.Admin-selected {
+            .lot-owner-btn {
+                border-bottom: 2px solid white;
+            }
         }
     }
 
