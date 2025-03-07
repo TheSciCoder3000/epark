@@ -1,17 +1,26 @@
 import { useAuth } from "../components/contexts/useAuth";
 import { useNavigate } from "react-router-dom";
+import Bkg from "../assets/img/dash-bkg.png"
 
 export default function Account() {
   const { logOutUser } = useAuth();
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    logOutUser().then(() => navigate("/login"))
-  }
+    logOutUser().then(() => navigate("/login"));
+  };
   return (
     <div className="page">
-      <h1>👤 Account Section</h1>
-      <p>Manage your profile and settings.</p>
+      <div className="dashboard-cont">
+        <div className="home-background">
+          <div className="overlay"></div>
+          <img src={Bkg} alt="" />
+        </div>
+
+        {/* Page Title */}
+        <h1>Account</h1>
+
+      </div>
       <button onClick={logoutHandler}>Log Out</button>
     </div>
   );

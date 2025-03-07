@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
-import Map from "./pages/Map";
+import History from "./pages/History";
 import Account from "./pages/Account";
 import { AuthProvider } from './components/contexts/AuthProvider'
 
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
-          <Route path="/map" element={<Map />} />
+          <Route path="/history" element={<History />} />
           <Route path="/account" element={<Account />} />
         </Route>
         <Route path='/login' element={<Login />} />

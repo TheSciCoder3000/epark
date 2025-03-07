@@ -7,6 +7,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
+  const [fullName, setFUllName] = useState("");
   const [plateNumber, setPlateNumber] = useState("");
   const { registerUser } = useAuth();
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Register() {
     e.preventDefault();
 
     if (confirmPassword == password) {
-      registerUser(email, vehicleModel, plateNumber, password).then(() => navigate("/login"));
+      registerUser(email, fullName, vehicleModel, plateNumber, password).then(() => navigate("/login"));
     }
   };
 
@@ -34,6 +35,15 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
               id="email"
               className="email"
+            />
+          </div>
+          <div className="form-field name-field">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              onChange={(e) => setname(e.target.value)}
+              id="name"
+              className="name"
             />
           </div>
           <div className="form-field password-field">
