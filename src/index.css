@@ -21,3 +21,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.loading-cont {
+  background-color: #171811;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

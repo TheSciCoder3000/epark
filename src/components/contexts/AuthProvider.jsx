@@ -11,6 +11,7 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     const initializeUser = async (user) => {
+        setLoading(true);
         if (user) {
             const userData = await getUserDb(user.uid);
             console.log({ ...userData.data(), ...user })

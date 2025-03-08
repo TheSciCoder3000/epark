@@ -4,6 +4,8 @@ import Nav from './Nav';
 
 function ProtectedRoute() {
     const { currentUser, loading } = useAuth();
+    console.log("testing:");
+    console.log({ currentUser, loading })
 
     if (!loading) {
         if (currentUser) return <>
@@ -12,6 +14,10 @@ function ProtectedRoute() {
         </>
         return <Navigate to="/login" />
     }
+
+    return <div className='loading-cont'>
+        <h1>Loading ...</h1>
+    </div>
 }
 
 export default ProtectedRoute
