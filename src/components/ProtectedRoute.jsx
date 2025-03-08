@@ -9,7 +9,7 @@ function ProtectedRoute({ role }) {
 
     if (!loading) {
         if (currentUser) {
-            if (currentUser.role != role) return <Navigate to="/not-found" />
+            if (currentUser.role != role) return <Navigate to="/admin-dashboard" />
             return <>
                 <Outlet />
                 <Nav />

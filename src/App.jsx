@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import ProtectedRoute from './components/ProtectedRoute'
 import NotFound from "./pages/NotFound";
+import AdminSettings from "./pages/Admin/AdminSettings";
 
 function App() {
   return (
@@ -18,8 +19,13 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/map" element={<Map />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/admin-dashboard" element={<DashboardAdmin />} />
         </Route>
+
+        <Route element={<ProtectedRoute role="Admin" />}>
+          <Route path="/admin-dashboard" element={<DashboardAdmin />} />
+          <Route path="/admin-settings" element={<AdminSettings />} />
+        </Route>
+
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path="/not-found" element={<NotFound />} />
