@@ -1,0 +1,28 @@
+.card-row {
+    display: flex;
+    flex-direction: column; /* Stack cards on mobile */
+    align-items: center;
+    width: 100%;
+    padding: 0 10px; /* Prevents horizontal overflow */
+    gap: 15px;
+}
+
+/* Ensure the cards fit within the screen width */
+.available-slot,
+.reserved-slot {
+    width: 90%;
+    max-width: 400px; /* Prevents cards from being too wide */
+}
+
+/* Adjust for larger screens */
+@media (min-width: 768px) {
+    .card-row {
+        flex-direction: row; /* Align side by side */
+        justify-content: space-between;
+    }
+
+    .available-slot,
+    .reserved-slot {
+        width: 48%; /* Ensures both fit side by side */
+    }
+}
