@@ -17,7 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/map" element={<Map />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/DashboardAdmin" element={<DashboardAdmin/>} />
+          <Route path="/admin-dashboard" element={<DashboardAdmin />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
