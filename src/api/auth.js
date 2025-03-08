@@ -2,11 +2,11 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { auth } from "./firebase";
 import { createUserDb } from "./Firestore";
 
-export const registerUser = async (email, name, vehicle, plate, password) => {
+export const registerUser = async (email, password, userData) => {
     return createUserWithEmailAndPassword(auth, email, password)
         .then(creds => {
             console.log(creds);
-            createUserDb(creds.user.uid, { email, name, vehicle, plate});
+            createUserDb(creds.user.uid, userData);
         });
 }
 

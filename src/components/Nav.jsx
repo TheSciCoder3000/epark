@@ -1,14 +1,26 @@
 import { NavLink } from "react-router";
-import { FaTachometerAlt , FaMapMarkedAlt, FaUser } from "react-icons/fa";
+import { FaTachometerAlt, FaUser, FaUserShield } from "react-icons/fa";
 import "../assets/styles/css/Navbar.css";
-import { BsHouse, BsHouseFill } from "react-icons/bs";
+import { BsHouseFill } from "react-icons/bs";
+import { useAuth } from "./contexts/useAuth";
 
 export default function Nav() {
+  const { currentUser } = useAuth();
+
   return (
     <nav className="navbar">
-      <NavItem to="/history" icon={<FaTachometerAlt  />} label="History" />
-      <NavItem to="/" icon={<BsHouseFill />} label="Dashboard" />
-      <NavItem to="/account" icon={<FaUser />} label="Account" />
+      {currentUser.role === "User" ?
+        <>
+          <NavItem to="/history" icon={<FaTachometerAlt />} label="History" />
+          <NavItem to="/" icon={<BsHouseFill />} label="Dashboard" />
+          <NavItem to="/account" icon={<FaUser />} label="Account" />
+        </>
+        :
+        <>
+          <NavItem to="/admin-dashboard" icon={<FaUserShield />} label="Dashboard Admin" />
+          <NavItem to="/admin-settings" icon={<FaUser />} label="Account" />
+        </>
+      }
     </nav>
   );
 }
