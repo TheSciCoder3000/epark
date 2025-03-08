@@ -8,10 +8,13 @@ function ProtectedRoute({ role }) {
     console.log({ currentUser, loading })
 
     if (!loading) {
-        if (currentUser && role == currentUser?.role) return <>
-            <Outlet />
-            <Nav />
-        </>
+        if (currentUser) {
+            if (currentUser.role != role) return <Navigate to="/not-found" />
+            return <>
+                <Outlet />
+                <Nav />
+            </>
+        }
         return <Navigate to="/login" />
     }
 

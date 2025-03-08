@@ -7,6 +7,7 @@ import { AuthProvider } from './components/contexts/AuthProvider'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ProtectedRoute from './components/ProtectedRoute'
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path="/not-found" element={<NotFound />} />
       </Routes>
     </AuthProvider>
   )
