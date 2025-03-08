@@ -3,22 +3,32 @@ import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Account from "./pages/Account";
 import { AuthProvider } from './components/contexts/AuthProvider'
+import DashboardAdmin from "./pages/Admin/DashboardAdmin";
 
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ProtectedRoute from './components/ProtectedRoute'
+import NotFound from "./pages/NotFound";
+import AdminSettings from "./pages/Admin/AdminSettings";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute role="User" />}>
           <Route index element={<Home />} />
           <Route path="/map" element={<Map />} />
           <Route path="/account" element={<Account />} />
         </Route>
+
+        <Route element={<ProtectedRoute role="Admin" />}>
+          <Route path="/admin-dashboard" element={<DashboardAdmin />} />
+          <Route path="/admin-settings" element={<AdminSettings />} />
+        </Route>
+
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path="/not-found" element={<NotFound />} />
       </Routes>
     </AuthProvider>
   )

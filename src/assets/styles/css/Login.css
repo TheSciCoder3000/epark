@@ -1,10 +1,10 @@
 .login-cont {
   width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 7rem 0 0 0;
+  padding: 7rem 0 5rem 0;
   color: white;
   background: linear-gradient(163.63deg, #434732 -12.77%, #231F1E 60.76%);
 }
@@ -17,6 +17,25 @@
 }
 .login-cont .header-cont h1 {
   font-weight: 500;
+}
+.login-cont .role-selector-cont {
+  display: flex;
+  width: 18rem;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.login-cont .role-selector-cont button {
+  padding: 0.5rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  flex: 1;
+}
+.login-cont .role-selector-cont.User-selected .user-btn {
+  border-bottom: 2px solid white;
+}
+.login-cont .role-selector-cont.Admin-selected .lot-owner-btn {
+  border-bottom: 2px solid white;
 }
 .login-cont .form-cont {
   width: 100%;

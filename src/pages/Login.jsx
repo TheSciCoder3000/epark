@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../components/contexts/useAuth";
-import { Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import "../assets/styles/css/Login.css";
 
 function Login() {
@@ -38,7 +38,7 @@ function Login() {
                     </div>
 
                     <div className="form-actions">
-                        <a>Forgot Password?</a>
+                        <Link to="/register">Don&apos;t have an account?</Link>
                         <button className="login-btn" type="submit">LOGIN</button>
                     </div>
                 </form>

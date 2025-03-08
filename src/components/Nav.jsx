@@ -1,13 +1,25 @@
 import { NavLink } from "react-router";
-import { FaTachometerAlt , FaMapMarkedAlt, FaUser } from "react-icons/fa";
+import { FaTachometerAlt, FaMapMarkedAlt, FaUser, FaUserShield } from "react-icons/fa";
 import "../assets/styles/css/Navbar.css";
+import { useAuth } from "./contexts/useAuth";
 
 export default function Nav() {
+  const { currentUser } = useAuth();
+
   return (
     <nav className="navbar">
-      <NavItem to="/" icon={<FaTachometerAlt  />} label="Parking" />
-      <NavItem to="/map" icon={<FaMapMarkedAlt />} label="Map" />
-      <NavItem to="/account" icon={<FaUser />} label="Account" />
+      {currentUser.role === "User" ?
+        <>
+          <NavItem to="/" icon={<FaTachometerAlt />} label="Parking" />
+          <NavItem to="/map" icon={<FaMapMarkedAlt />} label="Map" />
+          <NavItem to="/account" icon={<FaUser />} label="Account" />
+        </>
+        :
+        <>
+          <NavItem to="/admin-dashboard" icon={<FaUserShield />} label="Dashboard Admin" />
+          <NavItem to="/admin-settings" icon={<FaUser />} label="Account" />
+        </>
+      }
     </nav>
   );
 }
