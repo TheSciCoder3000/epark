@@ -2,13 +2,13 @@ import { Navigate, Outlet } from 'react-router'
 import { useAuth } from './contexts/useAuth'
 import Nav from './Nav';
 
-function ProtectedRoute() {
+function ProtectedRoute({ role }) {
     const { currentUser, loading } = useAuth();
     console.log("testing:");
     console.log({ currentUser, loading })
 
     if (!loading) {
-        if (currentUser) return <>
+        if (currentUser && role == currentUser?.role) return <>
             <Outlet />
             <Nav />
         </>

@@ -12,7 +12,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute role="User" />}>
           <Route index element={<Home />} />
           <Route path="/map" element={<Map />} />
           <Route path="/account" element={<Account />} />
