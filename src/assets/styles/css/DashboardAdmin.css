@@ -1,28 +1,39 @@
 .card-row {
     display: flex;
-    flex-direction: column; /* Stack cards on mobile */
-    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping only when needed */
+    justify-content: center; /* Centers the cards on smaller screens */
+    align-items: stretch;
     width: 100%;
-    padding: 0 10px; /* Prevents horizontal overflow */
+    padding: 0 10px;
     gap: 15px;
 }
 
-/* Ensure the cards fit within the screen width */
+/* Ensure all cards take equal space */
 .available-slot,
-.reserved-slot {
-    width: 90%;
-    max-width: 400px; /* Prevents cards from being too wide */
+.reserved-slot,
+.revenue-card {
+    flex: 1; /* Distributes space equally */
+    max-width: 150px; /* Adjust to fit properly */
+    height: 200px; /* Ensures all cards have the same height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Adjust for larger screens */
-@media (min-width: 768px) {
+/* Mobile View: Stack cards properly */
+@media (max-width: 768px) {
     .card-row {
-        flex-direction: row; /* Align side by side */
-        justify-content: space-between;
+        flex-direction: row; /* Stack cards vertically */
+        align-items: center;
     }
 
     .available-slot,
-    .reserved-slot {
-        width: 48%; /* Ensures both fit side by side */
+    .reserved-slot,
+    .revenue-card {
+        width: 90%; /* Make them fill most of the screen width */
+        max-width: 300px; /* Ensure consistency */
+        height: auto; /* Allow height to adjust naturally */
     }
 }

@@ -4,12 +4,14 @@ import History from "./pages/History";
 import Account from "./pages/Account";
 import { AuthProvider } from './components/contexts/AuthProvider'
 import DashboardAdmin from "./pages/Admin/DashboardAdmin";
-
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ProtectedRoute from './components/ProtectedRoute'
 import NotFound from "./pages/NotFound";
 import AdminSettings from "./pages/Admin/AdminSettings";
+import AdminHistory from "./pages/Admin/AdminHistory";
+import AdminParkingLot from "./pages/Admin/AdminParkingLot";
+
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route element={<ProtectedRoute role="Admin" />}>
           <Route path="/admin-dashboard" element={<DashboardAdmin />} />
           <Route path="/admin-settings" element={<AdminSettings />} />
+          <Route path="/admin-history" element={<AdminHistory />} />
+          <Route path="/admin-parkinglots" element={<AdminParkingLot />} />
         </Route>
 
         <Route path='/login' element={<Login />} />

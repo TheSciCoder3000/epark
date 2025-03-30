@@ -1,0 +1,69 @@
+/* Page Styling */
+
+
+
+
+
+.history-title {
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+/* Responsive Table */
+.history-container {
+    width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.history-table th, .history-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.history-table th {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Paid / Unpaid Labels */
+.paid {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.unpaid {
+    color: #FF5733;
+    font-weight: bold;
+}
+
+/* Mobile-Friendly Table - Cards */
+@media screen and (max-width: 768px) {
+    .history-table thead {
+        display: none;
+    }
+
+    .history-table .mobile-card td {
+        display: block;
+        width: 100%;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        padding: 12px;
+        text-align: left;
+    }
+
+    .card-content p {
+        margin: 5px 0;
+        font-size: 1rem;
+        color:aliceblue
+    }
+}
