@@ -116,4 +116,18 @@
 .dashboard-cont .collection-cont .parking-history-cont .history-card p {
   color: #106CE5;
   margin-top: 0.2rem;
+}
+.dashboard-cont .collection-cont .parking-history-cont .history-card.selected {
+  background-color: #C5EB0D;
+}
+.dashboard-cont .transaction-btn {
+  width: 100%;
+  display: block;
+  font-size: 1.5em;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: #9DBA14;
+}
+.dashboard-cont .transaction-btn:disabled {
+  background-color: #D7D6D6;
 }/*# sourceMappingURL=Home.css.map */

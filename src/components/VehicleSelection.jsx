@@ -15,7 +15,7 @@ const VehicleTypes = [
 function VehicleSelection({ onSelect }) {
   const [vehicleSelected, setVehicleSelected] = useState(null);
 
-  useEffect(() => onSelect && onSelect(vehicleSelected), [vehicleSelected])
+  useEffect(() => onSelect && onSelect(vehicleSelected), [vehicleSelected, onSelect]);
 
   return (
     <div className="vehicle-type-cont">

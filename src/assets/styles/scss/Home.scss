@@ -131,7 +131,25 @@
                     color: #106CE5;
                     margin-top: 0.2rem;
                 }
+
+                &.selected {
+                    background-color: #C5EB0D;
+                }
             }
+        }
+
+    }
+
+    .transaction-btn {
+        width: 100%;
+        display: block;
+        font-size: 1.5em;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        background-color: #9DBA14;
+
+        &:disabled {
+            background-color: #D7D6D6;
         }
     }
 }
