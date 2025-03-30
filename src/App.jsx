@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
-import History from "./pages/History";
+import History from "./pages/User/History";
 import Account from "./pages/Account";
 import { AuthProvider } from './components/contexts/AuthProvider'
 import DashboardAdmin from "./pages/Admin/DashboardAdmin";
