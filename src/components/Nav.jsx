@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { FaTachometerAlt, FaUser, FaUserShield } from "react-icons/fa";
+import { FaTachometerAlt, FaUser, FaUserShield, FaHistory, FaCar} from "react-icons/fa";
 import "../assets/styles/css/Navbar.css";
 import { BsHouseFill } from "react-icons/bs";
 import { useAuth } from "./contexts/useAuth";
@@ -18,6 +18,8 @@ export default function Nav() {
         :
         <>
           <NavItem to="/admin-dashboard" icon={<FaUserShield />} label="Dashboard Admin" />
+          <NavItem to="/admin-parkinglots" icon={<FaCar />} label="Parking Lots" />
+          <NavItem to="/admin-history" icon={<FaHistory />} label="History" />
           <NavItem to="/admin-settings" icon={<FaUser />} label="Account" />
         </>
       }

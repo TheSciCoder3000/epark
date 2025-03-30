@@ -1,0 +1,36 @@
+.parking-log {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.parking-log h2 {
+    font-size: 1.5rem;
+    color: #fff; /* Adjust text color for readability */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent; /* Makes the table background transparent */
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent borders */
+    color: #fff; /* White text for better contrast */
+}
+
+th {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark header */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.1); /* Light transparency for even rows */
+}
+
+tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.05); /* Slightly different transparency for odd rows */
+}
