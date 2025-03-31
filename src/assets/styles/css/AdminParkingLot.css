@@ -15,7 +15,6 @@
   width: 80px;
   height: 120px;
   display: flex;
-  align-items: center;
   justify-content: center;
   border: 3px solid white;
   color: white;
@@ -40,6 +39,7 @@
   line-height: 50px;
   font-weight: bold;
   border-radius: 5px;
+  cursor: pointer;
 }
 .dashboard-cont .parking-lots-cont .header {
   margin-bottom: 2rem;

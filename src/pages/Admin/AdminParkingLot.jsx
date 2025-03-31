@@ -1,27 +1,10 @@
 import { useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
-import "../../assets/styles/css/AdminParkingLot.css"; // Import CSS file
 import { createParkingSpots } from '../../api/Firestore';
 import { useAuth } from '../../components/contexts/useAuth';
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
-    const [parkingSpotName, setParkingSpotName] = useState(null);
-    const [parkingSpotType, ParkingSpotType] = useState(null);
-
-    // Example parking slots (true = occupied, false = available)
-    const parkingSlots = [
-        { id: 1, occupied: false },
-        { id: 2, occupied: true },
-        { id: 3, occupied: false },
-        { id: 4, occupied: true },
-        { id: 5, occupied: false },
-        { id: 6, occupied: false },
-        { id: 7, occupied: true },
-        { id: 8, occupied: false }
-    ];
-
-    // Example Parking Log Data
     const [parkingLog, setParkingLog] = useState([
         { client: "John Doe", plate: "XYZ 123", parkingSlot: 2, reservedHours: 4, hoursLeft: 2 },
         { client: "Jane Smith", plate: "ABC 789", parkingSlot: 4, reservedHours: 3, hoursLeft: 1 },
