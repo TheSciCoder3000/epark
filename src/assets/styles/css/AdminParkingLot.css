@@ -13,20 +13,18 @@
 }
 .parking-log-item {
   display: flex;
-  justify-content: space-between; /* Move text left and trash icon right */
+  justify-content: space-between; 
   align-items: center;
   background-color: #333;
   color: white;
-  padding: 15px; /* Increase padding for better spacing */
+  padding: 15px;
   border-radius: 5px;
   margin-bottom: 8px;
-  height: 100px; /* Adjust height as needed */
-  font-size: 1.1em; /* Slightly increase text size for better readability */
+  height: 100px; 
+  font-size: 1.1em; 
 }
 
-.add-parking-btn {
-  padding-top: 2rem;
-}
+
 
 .modal-overlay {
   position: fixed;
@@ -82,4 +80,26 @@
 .delete-btn {
   background-color:rgba(255, 255, 255, 0);
 
+}
+
+.parking-controls-cont {
+  display: flex;
+  justify-content: end; 
+}
+
+.add-parking-btn {
+  background-color: transparent;
+  font-size: 2em; 
+
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+  transition: transform 0.2s ease-in-out;
+}
+
+.add-parking-btn:hover {
+  transform: scale(1.1);
 }

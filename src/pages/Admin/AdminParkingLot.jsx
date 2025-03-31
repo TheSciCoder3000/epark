@@ -1,4 +1,4 @@
-import "../../assets/styles/css/AdminParkingLot.css"; // Import CSS file
+import "../../assets/styles/css/AdminParkingLot.css";
 import { useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
 import { createParkingSpots } from '../../api/Firestore';
@@ -45,7 +45,7 @@ const AdminParkingLot = () => {
             <div className="parking-lots-cont">
                 <h2 className="header">Parking Log</h2>
                 <div className="parking-controls-cont">
-                    <button onClick={toggleModal} className="add-parking-btn" style={{ backgroundColor: "rgba(255, 255, 255, 0)" }}>+</button>
+                    <button onClick={toggleModal} className="add-parking-btn">+</button>
                 </div>
                 <div className="parking-log-container">
                     <ul className="parking-log-list">
