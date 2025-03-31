@@ -19,7 +19,7 @@ export default function Home() {
       {/* Page Title */}
       <h1>Find Your Space</h1>
 
-      {!currentUser.activeReservationId ? <Reservation /> : <h1>Reservation created</h1>}
+      {!currentUser.activeReservation ? <Reservation /> : <h1>Reservation created</h1>}
     </div>
   );
 }

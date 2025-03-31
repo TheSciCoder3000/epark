@@ -5,9 +5,9 @@ function ParkingSpotList({ parkingSpots, onSelect }) {
     useEffect(() => onSelect && onSelect(LotSelected), [LotSelected, onSelect]);
 
     return (
-        <div className="parking-history-cont">
+        <div className="parking-spot-cont">
             {parkingSpots.map((data, index) => (
-                <div key={index} className={`history-card${LotSelected?.id === data.id ? " selected" : ""}`} onClick={() => setLotSelected(data)}>
+                <div key={index} className={`spot-item${LotSelected?.name === data.name ? " selected" : ""}`} onClick={() => setLotSelected(data)}>
                     <div className="history-content">
                         <h4>{data.name}</h4>
                         <p>{data.location}</p>

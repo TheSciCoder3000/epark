@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../api/firebase";
 import { loginUser, logOutUser, registerUser } from "../../api/auth";
 import { AuthContext } from "./useAuth";
-import { getOwnerDb, getUserDb } from "../../api/Firestore";
+import { getOwnerDb, getReservationFromUser, getUserDb } from "../../api/Firestore";
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -15,6 +15,12 @@ export function AuthProvider({ children }) {
         if (user) {
             let userData = await getUserDb(user.uid);
             if (!userData) userData = await getOwnerDb(user.uid);
+
+            if (userData.role == "User") {
+                const reservation = await getReservationFromUser(user.uid);
+                userData = { ...userData, activeReservation: reservation }
+            }
+
             setCurrentUser({ ...userData, uid: user.uid });
             setLoggedIn(true);
         } else {

@@ -138,6 +138,30 @@
             }
         }
 
+        .parking-spot-cont {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            overflow: auto;
+
+            .spot-item {
+                aspect-ratio: 1/1;
+                height: 10rem;
+                background-color: #D7D6D6;
+                padding: 0.9rem;
+                border-radius: 7px;
+
+                p {
+                    color: #106CE5;
+                    margin-top: 0.2rem;
+                }
+
+                &.selected {
+                    background-color: #C5EB0D;
+                }
+            }
+        }
+
         .parking-timeslot-cont {
             margin-bottom: 5rem;
         }

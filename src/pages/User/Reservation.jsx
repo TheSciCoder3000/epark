@@ -13,11 +13,11 @@ function Reservation() {
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [selectedParkingLot, setSelectedParkingLot] = useState(null);
     const [selectedParkingSpot, setSelectedParkingSpot] = useState(null);
-    const [Duration, setDuration] = useState(null)
+    const [start, setStart] = useState(null)
+    const [end, setEnd] = useState(null)
 
     const MakeReservationHandler = () => {
-        console.log({ selectedParkingLot, selectedVehicle, selectedParkingSpot, Duration })
-        createReservation(selectedParkingSpot, currentUser.uid, Duration)
+        createReservation(currentUser.uid, selectedParkingLot.id, selectedParkingSpot.name, start, end)
     }
 
     return (
@@ -50,7 +50,7 @@ function Reservation() {
 
             {selectedParkingSpot && <div className="collection-cont">
                 <h3 className="collection-header">Duration</h3>
-                <ParkingTimeSlot onChange={setDuration} />
+                <ParkingTimeSlot onStartChange={setStart} onEndChange={setEnd} />
             </div>}
 
             <button onClick={MakeReservationHandler} className="transaction-btn" disabled={!selectedParkingLot || !selectedVehicle || !selectedParkingSpot}>
