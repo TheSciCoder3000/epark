@@ -1,32 +1,32 @@
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 .dashboard-cont .parking-log-list {
   list-style: none;
   padding: 0;
   padding-top: 1rem;
 }
-
 .dashboard-cont .parking-log-item {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}
-.parking-log-item {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
   background-color: #333;
   color: white;
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 8px;
-  height: 100px; 
-  font-size: 1.1em; 
+  height: 100px;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-
-
-.modal-overlay {
+.dashboard-cont .parking-log-item button.delete-btn {
+  background-color: rgba(255, 255, 255, 0);
+}
+.dashboard-cont .modal-overlay {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -37,8 +37,7 @@
   justify-content: center;
   align-items: flex-end;
 }
-
-.modal-drawer {
+.dashboard-cont .modal-drawer {
   background: #282828;
   width: 100%;
   max-width: 500px;
@@ -47,13 +46,7 @@
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.3s ease-out;
 }
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.modal-drawer input, .modal-drawer select {
+.dashboard-cont .modal-drawer input, .dashboard-cont .modal-drawer select {
   width: 100%;
   color: #333;
   padding: 10px;
@@ -61,8 +54,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
-.modal-drawer button {
+.dashboard-cont .modal-drawer button {
   width: 100%;
   padding: 10px;
   background-color: #4CAF50;
@@ -71,35 +63,24 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-
-.modal-drawer button:hover {
+.dashboard-cont .modal-drawer button:hover {
   background-color: #45a049;
 }
-
-.delete-btn {
-  background-color:rgba(255, 255, 255, 0);
-
-}
-
-.parking-controls-cont {
+.dashboard-cont .parking-controls-cont {
   display: flex;
-  justify-content: end; 
+  justify-content: end;
 }
-
-.add-parking-btn {
+.dashboard-cont .parking-controls-cont .add-parking-btn {
   background-color: transparent;
-  font-size: 2em; 
-
+  font-size: 2em;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; 
+  border-radius: 50%;
   transition: transform 0.2s ease-in-out;
 }
-
-.add-parking-btn:hover {
+.dashboard-cont .parking-controls-cont .add-parking-btn:hover {
   transform: scale(1.1);
-}
+}/*# sourceMappingURL=AdminParkingLot.css.map */
