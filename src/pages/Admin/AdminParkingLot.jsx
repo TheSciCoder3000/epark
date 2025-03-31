@@ -7,10 +7,10 @@ import { useAuth } from '../../components/contexts/useAuth';
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
     const [parkingLog, setParkingLog] = useState([
-        { parkingSlot: 2, vehicleType: "Sedan" },
-        { parkingSlot: 4, vehicleType: "SUV" },
-        { parkingSlot: 7, vehicleType: "Truck" },
-        { parkingSlot: 9, vehicleType: "Motorcycle" },
+        { parkingSlot: "2", vehicleType: "Sedan" },
+        { parkingSlot: "4", vehicleType: "SUV" },
+        { parkingSlot: "7", vehicleType: "Truck" },
+        { parkingSlot: "9", vehicleType: "Motorcycle" },
     ]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newLog, setNewLog] = useState({ parkingSlot: "", vehicleType: "" });
