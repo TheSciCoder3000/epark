@@ -1,0 +1,32 @@
+$color_2: white;
+$color_3: #aaa;
+$background-color_1: #333;
+
+.admin-parking-log-cont {
+	padding: 20px;
+}
+
+.admin-parking-log-list {
+	list-style: none;
+	padding: 0;
+}
+.admin-parking-log-item {
+	background-color: $background-color_1;
+	color: $color_2;
+	padding: 20px;
+	border-radius: 5px;
+	margin-bottom: 15px;
+	font-size: 1.1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 200px;
+	div {
+		margin-bottom: 5px;
+	}
+}
+.admin-no-records {
+	text-align: center;
+	padding: 15px;
+	color: $color_3;
+}

@@ -1,36 +1,30 @@
-.parking-log {
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    text-align: center;
+.admin-parking-log-cont {
+  padding: 20px;
 }
 
-.parking-log h2 {
-    font-size: 1.5rem;
-    color: #fff; /* Adjust text color for readability */
+.admin-parking-log-list {
+  list-style: none;
+  padding: 0;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: transparent; /* Makes the table background transparent */
+.admin-parking-log-item {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 200px;
+}
+.admin-parking-log-item div {
+  margin-bottom: 5px;
 }
 
-th, td {
-    padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent borders */
-    color: #fff; /* White text for better contrast */
-}
-
-th {
-    background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark header */
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.1); /* Light transparency for even rows */
-}
-
-tr:nth-child(odd) {
-    background: rgba(255, 255, 255, 0.05); /* Slightly different transparency for odd rows */
-}
+.admin-no-records {
+  text-align: center;
+  padding: 15px;
+  color: #aaa;
+}/*# sourceMappingURL=ParkingLog.css.map */
