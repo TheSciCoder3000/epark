@@ -1,4 +1,4 @@
-import { setDoc, doc, getDoc, collection, getDocs } from "firebase/firestore"
+import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion } from "firebase/firestore"
 import { db } from "./firebase"
 
 export const createUserDb = async (userId, userData) => {
@@ -21,4 +21,10 @@ export const getParkingLots = async () => {
 export const createReservation = async (parkingSpot, userId, duration) => {
     const { id, ...spotData } = parkingSpot;
     await setDoc(doc(db, "lots", id), { ...spotData, userId, duration })
+}
+
+export const createParkingSpots = async (userId, parkingInfo) => {
+    return await updateDoc(doc(db, "owner", userId), {
+        lots: arrayUnion(parkingInfo)
+    })
 }

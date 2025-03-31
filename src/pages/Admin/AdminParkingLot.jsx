@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
 import "../../assets/styles/css/AdminParkingLot.css"; // Import CSS file
+import { createParkingSpots } from '../../api/Firestore';
+import { useAuth } from '../../components/contexts/useAuth';
 
 const AdminParkingLot = () => {
+    const { currentUser } = useAuth();
+    const [parkingSpotName, setParkingSpotName] = useState(null);
+    const [parkingSpotType, ParkingSpotType] = useState(null);
+
     // Example parking slots (true = occupied, false = available)
     const parkingSlots = [
         { id: 1, occupied: false },
@@ -21,6 +27,10 @@ const AdminParkingLot = () => {
         { client: "Jane Smith", plate: "ABC 789", parkingSlot: 4, reservedHours: 3, hoursLeft: 1 },
         { client: "Alice Brown", plate: "DEF 456", parkingSlot: 7, reservedHours: 5, hoursLeft: 3 },
     ]);
+
+    const onAddParkingLot = () => {
+        createParkingSpots(currentUser.uid, { name: parkingSpotName, type: parkingSpotType });
+    }
 
     return (
         <div className="dashboard-cont">
@@ -53,30 +63,35 @@ const AdminParkingLot = () => {
             </div>
 
             {/* Parking Log Table */}
-            <h2>Parking Log</h2>
-            <div className="parking-log-container">
-                <table className="parking-log">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Plate Number</th>
-                            <th>Parking Slot</th>
-                            <th>Reserved Hours</th>
-                            <th>Hours Left</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {parkingLog.map((log, index) => (
-                            <tr key={index}>
-                                <td>{log.client}</td>
-                                <td>{log.plate}</td>
-                                <td>Slot {log.parkingSlot}</td>
-                                <td>{log.reservedHours} hrs</td>
-                                <td>{log.hoursLeft} hrs</td>
+            <div className="parking-lots-cont">
+                <h2 className='header'>Parking Log</h2>
+                <div className="parking-controls-cont">
+                    <button onClick={onAddParkingLot} className="add-parking-btn">+</button>
+                </div>
+                <div className="parking-log-container">
+                    <table className="parking-log">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Plate Number</th>
+                                <th>Parking Slot</th>
+                                <th>Reserved Hours</th>
+                                <th>Hours Left</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {parkingLog.map((log, index) => (
+                                <tr key={index}>
+                                    <td>{log.client}</td>
+                                    <td>{log.plate}</td>
+                                    <td>Slot {log.parkingSlot}</td>
+                                    <td>{log.reservedHours} hrs</td>
+                                    <td>{log.hoursLeft} hrs</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
