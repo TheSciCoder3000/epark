@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../api/firebase";
 import { loginUser, logOutUser, registerUser } from "../../api/auth";
 import { AuthContext } from "./useAuth";
-import { getUserDb } from "../../api/Firestore";
+import { getOwnerDb, getUserDb } from "../../api/Firestore";
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -13,9 +13,9 @@ export function AuthProvider({ children }) {
     const initializeUser = async (user) => {
         setLoading(true);
         if (user) {
-            const userData = await getUserDb(user.uid);
-            console.log({ ...userData.data(), ...user })
-            setCurrentUser({ ...userData.data(), uid: user.uid });
+            let userData = await getUserDb(user.uid);
+            if (!userData) userData = await getOwnerDb(user.uid);
+            setCurrentUser({ ...userData, uid: user.uid });
             setLoggedIn(true);
         } else {
             setCurrentUser(null);

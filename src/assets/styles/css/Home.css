@@ -120,6 +120,9 @@
 .dashboard-cont .collection-cont .parking-history-cont .history-card.selected {
   background-color: #C5EB0D;
 }
+.dashboard-cont .collection-cont .parking-timeslot-cont {
+  margin-bottom: 5rem;
+}
 .dashboard-cont .transaction-btn {
   width: 100%;
   display: block;
