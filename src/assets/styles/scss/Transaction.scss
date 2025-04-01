@@ -1,0 +1,76 @@
+$color_1: rgb(174, 174, 174);
+$color_2: white;
+$background-color_1: #202020;
+$background-color_2: #9DBA14;
+$background-color_3: #45a049;
+$background-color_4: #9DBA14;
+$background-color_5: #f44336;
+$background-color_6: #e53935;
+$background-color_7: #d32f2f;
+
+/* Center the transaction data container */
+/* Header Style */
+/* Transaction details styling */
+/* Payment button styling */
+/* Cancel button styling */
+.transactionData {
+	position: relative;
+	z-index: 1;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 30px;
+	background-color: $background-color_1;
+	border-radius: 8px;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	margin-top: 7rem;
+	h3 {
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		color: $color_1;
+	}
+}
+.transactionDetails {
+	margin-bottom: 20px;
+	p {
+		font-size: 18px;
+		margin-bottom: 10px;
+		color: $color_1;
+	}
+}
+.payment-btn {
+	width: 100%;
+	padding: 12px;
+	background-color: $background-color_2;
+	color: $color_2;
+	font-size: 18px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	margin-bottom: 15px;
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: $background-color_3;
+	}
+	&:active {
+		background-color: $background-color_4;
+	}
+}
+.cancel-bn {
+	width: 100%;
+	padding: 12px;
+	background-color: $background-color_5;
+	color: $color_2;
+	font-size: 18px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: $background-color_6;
+	}
+	&:active {
+		background-color: $background-color_7;
+	}
+}

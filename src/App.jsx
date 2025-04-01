@@ -11,6 +11,8 @@ import NotFound from "./pages/NotFound";
 import AdminSettings from "./pages/Admin/AdminSettings";
 import AdminHistory from "./pages/Admin/AdminHistory";
 import AdminParkingLot from "./pages/Admin/AdminParkingLot";
+import Transaction from "./pages/User/Transaction";
+import TransactionSuccess from "./pages/User/TransactionSuccess";
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/history" element={<History />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/transaction-success" element={<TransactionSuccess />} />
         </Route>
 
         <Route element={<ProtectedRoute role="Admin" />}>
