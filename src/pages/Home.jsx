@@ -1,11 +1,12 @@
 import Bkg from "../assets/img/dash-bkg.png"
 import "../assets/styles/css/Home.css"
 import { useAuth } from "../components/contexts/useAuth";
+import ReservationStatus from "../components/ReservationStatus";
 import Reservation from "./User/Reservation";
 
 
 export default function Home() {
-  const { currentUser } = useAuth();
+  const { currentUser, updateReservationStatus } = useAuth();
 
 
 
@@ -19,7 +20,7 @@ export default function Home() {
       {/* Page Title */}
       <h1>Find Your Space</h1>
 
-      {!currentUser.activeReservation ? <Reservation /> : <h1>Reservation created</h1>}
+      {!currentUser.activeReservation ? <Reservation /> : <ReservationStatus updateReservation={updateReservationStatus} reservation={currentUser.activeReservation} />}
     </div>
   );
 }

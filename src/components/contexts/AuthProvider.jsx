@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../../api/firebase";
 import { loginUser, logOutUser, registerUser } from "../../api/auth";
 import { AuthContext } from "./useAuth";
-import { getOwnerDb, getReservationFromUser, getUserDb } from "../../api/Firestore";
+import { getOwnerDb, getReservationFromUser, getUserDb, createReservation as makeReservations, updateReservationStatus as updateReservation } from "../../api/Firestore";
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -35,6 +35,27 @@ export function AuthProvider({ children }) {
         return unsub;
     }, [])
 
+    const createReservation = (userId, parkingLotId, parkingSpotId, StartTime, EndTime) => {
+        return makeReservations(userId, parkingLotId, parkingSpotId, StartTime, EndTime)
+            .then(res => {
+                setCurrentUser(state => ({ ...state, activeReservation: res }))
+                return res;
+            })
+    }
+
+    const updateReservationStatus = (reservationId, status) => {
+        return updateReservation(reservationId)
+            .then(res => {
+                setCurrentUser(state => ({
+                    ...state, activeReservation: {
+                        ...state.activeReservation,
+                        status
+                    }
+                }))
+                return res;
+            })
+    }
+
     return (
         <AuthContext.Provider value={{
             currentUser,
@@ -42,7 +63,9 @@ export function AuthProvider({ children }) {
             loading,
             registerUser,
             loginUser,
-            logOutUser
+            logOutUser,
+            createReservation,
+            updateReservationStatus
         }}>
             {children}
         </AuthContext.Provider>

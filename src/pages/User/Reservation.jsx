@@ -4,11 +4,10 @@ import VehicleSelection from "../../components/VehicleSelection";
 import ParkingLotsList from "../../components/ParkingLotsList";
 import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
-import { createReservation } from "../../api/Firestore";
 import { useAuth } from "../../components/contexts/useAuth";
 
-function Reservation() {
-    const { currentUser } = useAuth()
+function Reservation({ setReservation }) {
+    const { currentUser, createReservation } = useAuth()
     const [searchinput, setSearchinput] = useState("");
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [selectedParkingLot, setSelectedParkingLot] = useState(null);
@@ -18,6 +17,7 @@ function Reservation() {
 
     const MakeReservationHandler = () => {
         createReservation(currentUser.uid, selectedParkingLot.id, selectedParkingSpot.name, start, end)
+            .then(setReservation);
     }
 
     return (
