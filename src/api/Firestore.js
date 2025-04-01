@@ -35,9 +35,9 @@ export const createReservation = async (userId, parkingLotId, parkingSpotId, Sta
         })
 }
 
-export const updateReservationStatus = async (reservationId) => {
+export const updateReservationStatus = async (reservationId, status) => {
     return await updateDoc(doc(db, "reservations", reservationId), {
-        status: "occupied"
+        status
     })
 }
 

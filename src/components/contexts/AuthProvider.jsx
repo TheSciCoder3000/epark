@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     }
 
     const updateReservationStatus = (reservationId, status) => {
-        return updateReservation(reservationId)
+        return updateReservation(reservationId, status)
             .then(res => {
                 setCurrentUser(state => ({
                     ...state, activeReservation: {
