@@ -5,9 +5,16 @@
     gap: 5rem;
 
     .reservation-indicator {
-        background-color: #62B347;
         padding: 1rem;
         border-radius: 5px;
+
+        &.reserved {
+            background-color: #8eaa00;
+        }
+
+        &.occupied {
+            background-color: #62B347;
+        }
 
         .detail-row {
             display: flex;

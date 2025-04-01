@@ -1,4 +1,4 @@
-import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where } from "firebase/firestore"
+import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where, onSnapshot } from "firebase/firestore"
 import { db } from "./firebase"
 
 export const createUserDb = async (userId, userData) => {
@@ -36,6 +36,7 @@ export const createReservation = async (userId, parkingLotId, parkingSpotId, Sta
 }
 
 export const updateReservationStatus = async (reservationId, status) => {
+    console.log({ status })
     return await updateDoc(doc(db, "reservations", reservationId), {
         status
     })
@@ -56,6 +57,24 @@ export const getReservationFromUser = async (userId) => {
             }
             return documentData
         })
+}
+
+export const onReservationUpdates = async (reservationId, getDocData) => {
+    return onSnapshot(doc(db, "reservations", reservationId), async (docSnapshot) => {
+        const reservationData = docSnapshot.data();
+
+        if (reservationData) {
+            const ref = doc(db, "owner", reservationData.parkingLotId);
+            const ownerData = await getDoc(ref).then(snapShot => snapShot.data());
+            getDocData({
+                id: docSnapshot.id,
+                ...reservationData,
+                parkingLot: ownerData
+            })
+        } else {
+            getDocData(null)
+        }
+    })
 }
 
 export const createParkingSpots = async (userId, parkingInfo) => {

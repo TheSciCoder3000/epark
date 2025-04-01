@@ -6,9 +6,9 @@ import Reservation from "./User/Reservation";
 
 
 export default function Home() {
-  const { currentUser, updateReservationStatus } = useAuth();
+  const { currentUser } = useAuth();
 
-
+  console.log("home")
 
   return (
     <div className="dashboard-cont">
@@ -20,7 +20,7 @@ export default function Home() {
       {/* Page Title */}
       <h1>Find Your Space</h1>
 
-      {!currentUser.activeReservation ? <Reservation /> : <ReservationStatus updateReservation={updateReservationStatus} reservation={currentUser.activeReservation} />}
+      {!currentUser.activeReservation ? <Reservation /> : <ReservationStatus reservation={currentUser.activeReservation} />}
     </div>
   );
 }

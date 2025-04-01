@@ -5,9 +5,14 @@
   gap: 5rem;
 }
 .reservation-status-cont .reservation-indicator {
-  background-color: #62B347;
   padding: 1rem;
   border-radius: 5px;
+}
+.reservation-status-cont .reservation-indicator.reserved {
+  background-color: #8eaa00;
+}
+.reservation-status-cont .reservation-indicator.occupied {
+  background-color: #62B347;
 }
 .reservation-status-cont .reservation-indicator .detail-row {
   display: flex;

@@ -15,9 +15,13 @@ function Reservation({ setReservation }) {
     const [start, setStart] = useState(null)
     const [end, setEnd] = useState(null)
 
+    const [enabled, setEnabled] = useState(true);
+
     const MakeReservationHandler = () => {
+        setEnabled(false)
         createReservation(currentUser.uid, selectedParkingLot.id, selectedParkingSpot.name, start, end)
-            .then(setReservation);
+            .then(setReservation)
+            .then(() => setEnabled(true));
     }
 
     return (
@@ -53,7 +57,7 @@ function Reservation({ setReservation }) {
                 <ParkingTimeSlot onStartChange={setStart} onEndChange={setEnd} />
             </div>}
 
-            <button onClick={MakeReservationHandler} className="transaction-btn" disabled={!selectedParkingLot || !selectedVehicle || !selectedParkingSpot}>
+            <button onClick={MakeReservationHandler} className="transaction-btn" disabled={!enabled || !selectedParkingLot || !selectedVehicle || !selectedParkingSpot}>
                 Reserve Now
             </button>
         </>

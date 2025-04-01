@@ -1,14 +1,16 @@
+import { updateReservationStatus } from "../api/Firestore"
 import "../assets/styles/css/ReservationStatus.css"
 
-function ReservationStatus({ reservation, updateReservation }) {
+function ReservationStatus({ reservation }) {
     const onUpdateReservation = async () => {
-        updateReservation(reservation.id, reservation.status == "reserved" ? "occupied" : "finished")
+        updateReservationStatus(reservation.id, reservation.status == "reserved" ? "occupied" : "finished")
     }
 
+    console.log({ reservation })
 
     return (
-        <div className='reservation-status-cont'>
-            <div className="reservation-indicator">
+        <div className={`reservation-status-cont ${reservation.status}`}>
+            <div className={`reservation-indicator ${reservation.status}`}>
                 <h2 className='parking-name'>{reservation.parkingLot.parkingName}</h2>
                 <div className="detail-row">
                     <h4 className="detail-header">Location:</h4>
