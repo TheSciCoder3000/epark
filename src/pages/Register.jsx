@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../components/contexts/useAuth";
+import { useAuth } from "../components/contexts/Auth/hooks";
 import { Link, useNavigate } from "react-router";
 
 function Register() {
@@ -20,9 +20,8 @@ function Register() {
 
     if (confirmPassword == password) {
       const userData = role === "User" ?
-        { email, role, fullName, vehicleModel, plateNumber } :
-        { email, role, parkingName, location };
-
+        { email, role, fullName, vehicleModel, plateNumber, history: [] } :
+        { email, role, parkingName, location, history: [], lots: [] };
       registerUser(email, password, userData).then(() => navigate("/login"));
     }
   }

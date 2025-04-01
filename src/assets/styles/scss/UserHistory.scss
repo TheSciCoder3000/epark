@@ -1,0 +1,66 @@
+.history-cont {
+    flex: 1;
+    background-color: #202020;
+
+    .top-bar {
+        padding: 2rem 0;
+        display: flex;
+
+        button {
+            flex: 1;
+            background-color: transparent;
+            border: none;
+
+            svg {
+                fill: white;
+                height: 1.7rem;
+            }
+        }
+
+        h1 {
+            flex: 3;
+            font-size: 1.8em;
+            text-align: center;
+        }
+    }
+
+    .previous-transaction-history {
+        .header {
+            color: rgb(139, 139, 139);
+            font-weight: 400;
+            font-size: .95em;
+            margin-bottom: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .transaction-items {
+            .prev-trans-item {
+                padding: 1rem;
+                display: flex;
+
+                .main-details {
+                    flex: 5;
+
+                    .name {
+                        font-size: 1.3em;
+                        margin-bottom: 0.5rem;
+                        color: white;
+                    }
+
+                    .date {
+                        font-size: 1em;
+                        color: rgb(169, 169, 169);
+                    }
+                }
+
+                .duration {
+                    flex: 1;
+                    color: white;
+                    font-size: 0.9em;
+                    font-weight: 400;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

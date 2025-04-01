@@ -1,11 +1,18 @@
-import { FaSearch } from "react-icons/fa";
 import Bkg from "../assets/img/dash-bkg.png"
-import VehicleSelection from "../components/VehicleSelection";
-import ParkingHistory from "../components/ParkingHistory";
 import "../assets/styles/css/Home.css"
+import { useReservation } from "../components/contexts/Reservation/hooks";
+import ReservationStatus from "../components/ReservationStatus";
+import Reservation from "./User/Reservation";
 
 
 export default function Home() {
+  const { reservation, loading } = useReservation();
+  console.log({ reservation, loading })
+
+  if (loading) return <div className="user-loading-cont">
+    <h1>Retrieving Reservation Data...</h1>
+  </div>
+
   return (
     <div className="dashboard-cont">
       <div className="home-background">
@@ -15,26 +22,11 @@ export default function Home() {
 
       {/* Page Title */}
       <h1>Find Your Space</h1>
-
-      {/* Search Bar */}
-      <div className="search-cont">
-        <input type="text" className="searchbar" />
-        <button className="search-btn">
-          <FaSearch />
-        </button>
-      </div>
-
-      {/* Vehicle Type */}
-      <div className="collection-cont">
-        <h3 className="collection-header">Your Vehicle</h3>
-        <VehicleSelection />
-      </div>
-
-      {/* Parking History */}
-      <div className="collection-cont">
-        <h3 className="collection-header">Parking History</h3>
-        <ParkingHistory />
-      </div>
+      {!reservation ?
+        <Reservation />
+        :
+        <ReservationStatus />
+      }
     </div>
   );
 }

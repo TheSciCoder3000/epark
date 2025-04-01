@@ -1,12 +1,12 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "./firebase";
-import { createUserDb } from "./Firestore";
+import { createParkingOwner, createUserDb } from "./Firestore";
 
 export const registerUser = async (email, password, userData) => {
     return createUserWithEmailAndPassword(auth, email, password)
         .then(creds => {
-            console.log(creds);
-            createUserDb(creds.user.uid, userData);
+            if (userData.role == "User") createUserDb(creds.user.uid, userData);
+            else createParkingOwner(creds.user.uid, userData);
         });
 }
 

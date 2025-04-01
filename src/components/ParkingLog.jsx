@@ -1,37 +1,26 @@
-import React from "react";
 import "../assets/styles/css/ParkingLog.css";
+import { useState } from "react";
 
 const ParkingLog = ({ logs }) => {
+    const [adminLogs, setAdminLogs] = useState(logs || []);
+
     return (
-        <div className="parking-log">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Client Name</th>
-                        <th>Car Plate Number</th>
-                        <th>Parking Spot</th>
-                        <th>Reserved Hours</th>
-                        <th>Hours Left</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {logs.length > 0 ? (
-                        logs.map((log, index) => (
-                            <tr key={index}>
-                                <td>{log.client}</td>
-                                <td>{log.plate}</td>
-                                <td>{log.ParkingSpot}</td>
-                                <td>{log.reservedHours} Hrs</td>
-                                <td>{log.hoursLeft} Hrs </td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="4">No parking records available</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+        <div className="admin-parking-log-cont">
+            <ul className="admin-parking-log-list">
+                {adminLogs.length > 0 ? (
+                    adminLogs.map((log, index) => (
+                        <li key={index} className="admin-parking-log-item">
+                            <div><strong>Client:</strong> {log.client}</div>
+                            <div><strong>Plate Number:</strong> {log.plate}</div>
+                            <div><strong>Parking Spot:</strong> {log.ParkingSpot}</div>
+                            <div><strong>Reserved Hours:</strong> {log.reservedHours} Hrs</div>
+                            <div><strong>Hours Left:</strong> {log.hoursLeft} Hrs</div>
+                        </li>
+                    ))
+                ) : (
+                    <li className="admin-no-records">No parking records available</li>
+                )}
+            </ul>
         </div>
     );
 };

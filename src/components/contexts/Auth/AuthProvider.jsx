@@ -1,9 +1,9 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from "../../api/firebase";
-import { loginUser, logOutUser, registerUser } from "../../api/auth";
-import { AuthContext } from "./useAuth";
-import { getUserDb } from "../../api/Firestore";
+import { auth } from "../../../api/firebase";
+import { loginUser, logOutUser, registerUser } from "../../../api/auth";
+import { AuthContext } from "./hooks";
+import { getOwnerDb, getUserDb } from "../../../api/Firestore";
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -13,9 +13,10 @@ export function AuthProvider({ children }) {
     const initializeUser = async (user) => {
         setLoading(true);
         if (user) {
-            const userData = await getUserDb(user.uid);
-            console.log({ ...userData.data(), ...user })
-            setCurrentUser({ ...userData.data(), uid: user.uid });
+            const userData = await getUserDb(user.uid)
+                .then((data) => data ? data : getOwnerDb(user.uid));
+
+            setCurrentUser({ ...userData, uid: user.uid });
             setLoggedIn(true);
         } else {
             setCurrentUser(null);
@@ -36,7 +37,7 @@ export function AuthProvider({ children }) {
             loading,
             registerUser,
             loginUser,
-            logOutUser
+            logOutUser,
         }}>
             {children}
         </AuthContext.Provider>

@@ -1,3 +1,11 @@
+.user-loading-cont {
+  flex: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .dashboard-cont {
   width: 100%;
   flex: 1;
@@ -116,4 +124,41 @@
 .dashboard-cont .collection-cont .parking-history-cont .history-card p {
   color: #106CE5;
   margin-top: 0.2rem;
+}
+.dashboard-cont .collection-cont .parking-history-cont .history-card.selected {
+  background-color: #C5EB0D;
+}
+.dashboard-cont .collection-cont .parking-spot-cont {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  overflow: auto;
+}
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item {
+  aspect-ratio: 1/1;
+  height: 10rem;
+  background-color: #D7D6D6;
+  padding: 0.9rem;
+  border-radius: 7px;
+}
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item p {
+  color: #106CE5;
+  margin-top: 0.2rem;
+}
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item.selected {
+  background-color: #C5EB0D;
+}
+.dashboard-cont .collection-cont .parking-timeslot-cont {
+  margin-bottom: 5rem;
+}
+.dashboard-cont .transaction-btn {
+  width: 100%;
+  display: block;
+  font-size: 1.5em;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: #9DBA14;
+}
+.dashboard-cont .transaction-btn:disabled {
+  background-color: #D7D6D6;
 }/*# sourceMappingURL=Home.css.map */

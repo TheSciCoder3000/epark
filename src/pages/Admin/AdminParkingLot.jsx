@@ -1,26 +1,49 @@
-import React, { useState } from 'react';
+import "../../assets/styles/css/AdminParkingLot.css";
+import { useEffect, useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
-import "../../assets/styles/css/AdminParkingLot.css"; // Import CSS file
+import { createParkingSpots } from '../../api/Firestore';
+import { useAuth } from '../../components/contexts/Auth/hooks';
 
 const AdminParkingLot = () => {
-    // Example parking slots (true = occupied, false = available)
-    const parkingSlots = [
-        { id: 1, occupied: false },
-        { id: 2, occupied: true },
-        { id: 3, occupied: false },
-        { id: 4, occupied: true },
-        { id: 5, occupied: false },
-        { id: 6, occupied: false },
-        { id: 7, occupied: true },
-        { id: 8, occupied: false }
-    ];
+    const { currentUser } = useAuth();
+    const [parkingLog, setParkingLog] = useState(currentUser.lots.map(item => ({
+        parkingSlot: item.name,
+        vehicleType: item.type,
+        price: item.price
+    })));
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newLog, setNewLog] = useState({ parkingSlot: "", vehicleType: "", price: 0 });
 
-    // Example Parking Log Data
-    const [parkingLog, setParkingLog] = useState([
-        { client: "John Doe", plate: "XYZ 123", parkingSlot: 2, reservedHours: 4, hoursLeft: 2 },
-        { client: "Jane Smith", plate: "ABC 789", parkingSlot: 4, reservedHours: 3, hoursLeft: 1 },
-        { client: "Alice Brown", plate: "DEF 456", parkingSlot: 7, reservedHours: 5, hoursLeft: 3 },
-    ]);
+    useEffect(() => {
+
+    }, [])
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const handleInputChange = (e) => {
+        setNewLog({ ...newLog, [e.target.name]: e.target.value });
+    };
+
+    const addParkingLog = () => {
+        createParkingSpots(currentUser.uid, {
+            name: newLog.parkingSlot,
+            type: newLog.vehicleType,
+            price: parseFloat(newLog.price)
+        })
+            .then(() => {
+                console.log([...parkingLog, newLog])
+                setParkingLog([...parkingLog, newLog]);
+                setNewLog({ parkingSlot: "", vehicleType: "", price: 0 });
+                toggleModal();
+            });
+    };
+
+    const deleteParkingLog = (index) => {
+        const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
+        setParkingLog(updatedParkingLog);
+    };
 
     return (
         <div className="dashboard-cont">
@@ -29,55 +52,40 @@ const AdminParkingLot = () => {
                 <img src={Bkg} alt="Dashboard Background" />
             </div>
 
-            <h1>Parking Lot</h1>
-
-            {/* Parking Lot Layout */}
-            <div className="parking-lot">
-                <div className="parking-row">
-                    {parkingSlots.slice(0, 4).map((slot) => (
-                        <div key={slot.id} className={`parking-slot ${slot.occupied ? 'occupied' : 'available'}`}>
-                            <span>Slot {slot.id}</span>
-                        </div>
-                    ))}
+            {/* Parking Log List */}
+            <div className="parking-lots-cont">
+                <h2 className="header">Parking Log</h2>
+                <div className="parking-controls-cont">
+                    <button onClick={toggleModal} className="add-parking-btn">+</button>
                 </div>
-
-                <div className="road-lane">Lane</div>
-
-                <div className="parking-row">
-                    {parkingSlots.slice(4, 8).map((slot) => (
-                        <div key={slot.id} className={`parking-slot ${slot.occupied ? 'occupied' : 'available'}`}>
-                            <span>Slot {slot.id}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Parking Log Table */}
-            <h2>Parking Log</h2>
-            <div className="parking-log-container">
-                <table className="parking-log">
-                    <thead>
-                        <tr>
-                            <th>Client Name</th>
-                            <th>Plate Number</th>
-                            <th>Parking Slot</th>
-                            <th>Reserved Hours</th>
-                            <th>Hours Left</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {parkingLog.map((log, index) => (
-                            <tr key={index}>
-                                <td>{log.client}</td>
-                                <td>{log.plate}</td>
-                                <td>Slot {log.parkingSlot}</td>
-                                <td>{log.reservedHours} hrs</td>
-                                <td>{log.hoursLeft} hrs</td>
-                            </tr>
+                <div className="parking-log-container">
+                    <ul className="parking-log-list">
+                        {parkingLog?.map((log, index) => (
+                            <li key={index} className="parking-log-item">
+                                Slot: {log.parkingSlot}
+                                <br />
+                                Type: {log.vehicleType}
+                                <button className="delete-btn" onClick={() => deleteParkingLog(index)}>
+                                    🗑️
+                                </button>
+                            </li>
                         ))}
-                    </tbody>
-                </table>
+                    </ul>
+                </div>
             </div>
+
+            {/* Bottom Drawer Modal */}
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={toggleModal}>
+                    <div className="modal-drawer" onClick={(e) => e.stopPropagation()}>
+                        <h3 style={{ color: "white" }}>Add Parking Log</h3>
+                        <input type="text" name="parkingSlot" placeholder="Parking Slot Number" value={newLog.parkingSlot} onChange={handleInputChange} />
+                        <input type="text" name="vehicleType" placeholder="Vehicle Type" value={newLog.vehicleType} onChange={handleInputChange} />
+                        <input type="number" name="price" placeholder="Price per hour" value={newLog.price} onChange={handleInputChange} />
+                        <button onClick={addParkingLog}>Add Log</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

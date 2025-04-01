@@ -1,0 +1,52 @@
+.history-cont {
+  flex: 1;
+  background-color: #202020;
+}
+.history-cont .top-bar {
+  padding: 2rem 0;
+  display: flex;
+}
+.history-cont .top-bar button {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+}
+.history-cont .top-bar button svg {
+  fill: white;
+  height: 1.7rem;
+}
+.history-cont .top-bar h1 {
+  flex: 3;
+  font-size: 1.8em;
+  text-align: center;
+}
+.history-cont .previous-transaction-history .header {
+  color: rgb(139, 139, 139);
+  font-weight: 400;
+  font-size: 0.95em;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item {
+  padding: 1rem;
+  display: flex;
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details {
+  flex: 5;
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details .name {
+  font-size: 1.3em;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details .date {
+  font-size: 1em;
+  color: rgb(169, 169, 169);
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .duration {
+  flex: 1;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 400;
+  text-align: right;
+}/*# sourceMappingURL=UserHistory.css.map */

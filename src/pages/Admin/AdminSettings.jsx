@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../components/contexts/useAuth";
+import { useAuth } from "../../components/contexts/Auth/hooks";
 import Bkg from "../../assets/img/dash-bkg.png";
 
 

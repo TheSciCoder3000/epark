@@ -1,3 +1,11 @@
+.user-loading-cont {
+    flex: 1;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .dashboard-cont {
     width: 100%;
     flex: 1;
@@ -131,7 +139,53 @@
                     color: #106CE5;
                     margin-top: 0.2rem;
                 }
+
+                &.selected {
+                    background-color: #C5EB0D;
+                }
             }
+        }
+
+        .parking-spot-cont {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            overflow: auto;
+
+            .spot-item {
+                aspect-ratio: 1/1;
+                height: 10rem;
+                background-color: #D7D6D6;
+                padding: 0.9rem;
+                border-radius: 7px;
+
+                p {
+                    color: #106CE5;
+                    margin-top: 0.2rem;
+                }
+
+                &.selected {
+                    background-color: #C5EB0D;
+                }
+            }
+        }
+
+        .parking-timeslot-cont {
+            margin-bottom: 5rem;
+        }
+
+    }
+
+    .transaction-btn {
+        width: 100%;
+        display: block;
+        font-size: 1.5em;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        background-color: #9DBA14;
+
+        &:disabled {
+            background-color: #D7D6D6;
         }
     }
 }

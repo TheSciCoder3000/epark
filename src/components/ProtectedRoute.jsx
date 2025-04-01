@@ -1,11 +1,9 @@
 import { Navigate, Outlet } from 'react-router'
-import { useAuth } from './contexts/useAuth'
+import { useAuth } from './contexts/Auth/hooks'
 import Nav from './Nav';
 
 function ProtectedRoute({ role }) {
     const { currentUser, loading } = useAuth();
-    console.log("testing:");
-    console.log({ currentUser, loading })
 
     if (!loading) {
         if (currentUser) {
