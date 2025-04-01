@@ -83,7 +83,6 @@ export const onUserReservationUpdates = (userId, setState) => {
 export const onOwnerReservationUpdates = (userId, setState) => {
     const reservationQuery = query(collection(db, "reservations"), where("parkingLotId", "==", userId))
     return onSnapshot(reservationQuery, (snapshot) => {
-        console.log(snapshot.docs.length)
         if (snapshot.docChanges().length == 0) setState(null);
         else setState(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });

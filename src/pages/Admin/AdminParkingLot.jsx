@@ -1,19 +1,22 @@
 import "../../assets/styles/css/AdminParkingLot.css";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
 import { createParkingSpots } from '../../api/Firestore';
 import { useAuth } from '../../components/contexts/Auth/hooks';
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
-    const [parkingLog, setParkingLog] = useState([
-        { parkingSlot: "2", vehicleType: "Sedan" },
-        { parkingSlot: "4", vehicleType: "SUV" },
-        { parkingSlot: "7", vehicleType: "Truck" },
-        { parkingSlot: "9", vehicleType: "Motorcycle" },
-    ]);
+    const [parkingLog, setParkingLog] = useState(currentUser.lots.map(item => ({
+        parkingSlot: item.name,
+        vehicleType: item.type,
+        price: item.price
+    })));
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newLog, setNewLog] = useState({ parkingSlot: "", vehicleType: "" });
+    const [newLog, setNewLog] = useState({ parkingSlot: "", vehicleType: "", price: 0 });
+
+    useEffect(() => {
+
+    }, [])
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -24,9 +27,17 @@ const AdminParkingLot = () => {
     };
 
     const addParkingLog = () => {
-        setParkingLog([...parkingLog, newLog]);
-        setNewLog({ parkingSlot: "", vehicleType: "" });
-        toggleModal();
+        createParkingSpots(currentUser.uid, {
+            name: newLog.parkingSlot,
+            type: newLog.vehicleType,
+            price: parseFloat(newLog.price)
+        })
+            .then(() => {
+                console.log([...parkingLog, newLog])
+                setParkingLog([...parkingLog, newLog]);
+                setNewLog({ parkingSlot: "", vehicleType: "", price: 0 });
+                toggleModal();
+            });
     };
 
     const deleteParkingLog = (index) => {
@@ -49,7 +60,7 @@ const AdminParkingLot = () => {
                 </div>
                 <div className="parking-log-container">
                     <ul className="parking-log-list">
-                        {parkingLog.map((log, index) => (
+                        {parkingLog?.map((log, index) => (
                             <li key={index} className="parking-log-item">
                                 Slot: {log.parkingSlot}
                                 <br />
@@ -68,8 +79,9 @@ const AdminParkingLot = () => {
                 <div className="modal-overlay" onClick={toggleModal}>
                     <div className="modal-drawer" onClick={(e) => e.stopPropagation()}>
                         <h3 style={{ color: "white" }}>Add Parking Log</h3>
-                        <input type="number" name="parkingSlot" placeholder="Parking Slot Number" value={newLog.parkingSlot} onChange={handleInputChange} />
+                        <input type="text" name="parkingSlot" placeholder="Parking Slot Number" value={newLog.parkingSlot} onChange={handleInputChange} />
                         <input type="text" name="vehicleType" placeholder="Vehicle Type" value={newLog.vehicleType} onChange={handleInputChange} />
+                        <input type="number" name="price" placeholder="Price per hour" value={newLog.price} onChange={handleInputChange} />
                         <button onClick={addParkingLog}>Add Log</button>
                     </div>
                 </div>
