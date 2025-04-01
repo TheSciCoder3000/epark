@@ -3,7 +3,7 @@
 import { ReservationContext } from './hooks'
 import { useAuth } from '../Auth/hooks'
 import { useEffect, useState } from 'react';
-import { addReservation, onUserHistoryUpdate, onUserReservationUpdates, updateReservationStatus } from '../../../api/Firestore';
+import { addReservation, onUserHistoryUpdate, onAdminHistoryUpdate, onUserReservationUpdates, updateReservationStatus, onOwnerReservationUpdates } from '../../../api/Firestore';
 
 function ReservationProvider({ children }) {
     const { currentUser, loading } = useAuth();
@@ -14,13 +14,20 @@ function ReservationProvider({ children }) {
     useEffect(() => {
         if (loading || !currentUser) return;
 
-        const reserve_unsub = onUserReservationUpdates(currentUser.uid, (type, doc) => {
+        console.log("adding listeners")
+        const reserve_unsub = currentUser.role == "User" ? onUserReservationUpdates(currentUser.uid, (type, doc) => {
             if (type == "removed") setReservation(null);
             else setReservation(doc)
             setLoading(false);
-        })
+        }) :
+            onOwnerReservationUpdates(currentUser.uid, (doc) => {
+                setReservation(doc)
+                setLoading(false);
+            });
 
-        const history_unsub = onUserHistoryUpdate(currentUser.uid, setHistory);
+        const history_unsub = currentUser.role == "User" ?
+            onUserHistoryUpdate(currentUser.uid, setHistory) :
+            onAdminHistoryUpdate(currentUser.uid, setHistory);
 
         return () => {
             reserve_unsub();

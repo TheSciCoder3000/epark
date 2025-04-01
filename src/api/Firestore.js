@@ -42,6 +42,9 @@ export const updateReservationStatus = async (reservationId, status) => {
 export const onUserHistoryUpdate = (userId, setHistory) => {
     return onSnapshot(doc(db, "user", userId), snapshot => setHistory(snapshot.data().history ? [...snapshot.data().history] : []))
 }
+export const onAdminHistoryUpdate = (userId, setHistory) => {
+    return onSnapshot(doc(db, "owner", userId), snapshot => setHistory(snapshot.data().history ? [...snapshot.data().history] : []))
+}
 
 /**
  * Used for getting Reservation data from the Reservation document using user id
@@ -74,6 +77,15 @@ export const onUserReservationUpdates = (userId, setState) => {
             const ownerData = await getDoc(ref).then(snapShot => snapShot.data());
             setState(change.type, { ...change.doc.data(), id: change.doc.id, parkingLot: ownerData });
         })
+    });
+}
+
+export const onOwnerReservationUpdates = (userId, setState) => {
+    const reservationQuery = query(collection(db, "reservations"), where("parkingLotId", "==", userId))
+    return onSnapshot(reservationQuery, (snapshot) => {
+        console.log(snapshot.docs.length)
+        if (snapshot.docChanges().length == 0) setState(null);
+        else setState(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
 }
 
