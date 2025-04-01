@@ -4,24 +4,24 @@ import VehicleSelection from "../../components/VehicleSelection";
 import ParkingLotsList from "../../components/ParkingLotsList";
 import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
-import { useAuth } from "../../components/contexts/useAuth";
+import { useReservation } from "../../components/contexts/Reservation/hooks";
 
-function Reservation({ setReservation }) {
-    const { currentUser, createReservation } = useAuth()
+function Reservation() {
+    const { createReservation } = useReservation();
     const [searchinput, setSearchinput] = useState("");
+
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [selectedParkingLot, setSelectedParkingLot] = useState(null);
     const [selectedParkingSpot, setSelectedParkingSpot] = useState(null);
-    const [start, setStart] = useState(null)
+    const [start, setStart] = useState(new Date())
     const [end, setEnd] = useState(null)
 
     const [enabled, setEnabled] = useState(true);
 
     const MakeReservationHandler = () => {
         setEnabled(false)
-        createReservation(currentUser.uid, selectedParkingLot.id, selectedParkingSpot.name, start, end)
-            .then(setReservation)
-            .then(() => setEnabled(true));
+        createReservation(selectedParkingLot.id, selectedParkingSpot.name, start, end, selectedParkingSpot.price)
+            .catch(() => setEnabled(true));
     }
 
     return (

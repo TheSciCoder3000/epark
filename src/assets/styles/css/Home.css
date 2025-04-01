@@ -1,3 +1,11 @@
+.user-loading-cont {
+  flex: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .dashboard-cont {
   width: 100%;
   flex: 1;
@@ -153,17 +161,4 @@
 }
 .dashboard-cont .transaction-btn:disabled {
   background-color: #D7D6D6;
-}
-.dashboard-cont .transact-button {
-  width: 100%;
-  display: block;
-  font-size: 1.5em;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  background-color: #9DBA14;
-  margin-top: 20px;
-}
-.dashboard-cont .transact-button:disabled {
-  background-color: #D7D6D6;
-}
-  /*# sourceMappingURL=Home.css.map */
+}/*# sourceMappingURL=Home.css.map */

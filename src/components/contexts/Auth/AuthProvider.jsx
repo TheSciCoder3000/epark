@@ -2,7 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../../../api/firebase";
 import { loginUser, logOutUser, registerUser } from "../../../api/auth";
-import { AuthContext } from "./useAuth";
+import { AuthContext } from "./hooks";
 import { getOwnerDb, getUserDb } from "../../../api/Firestore";
 
 export function AuthProvider({ children }) {

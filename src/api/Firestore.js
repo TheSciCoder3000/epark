@@ -1,4 +1,4 @@
-import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where, onSnapshot } from "firebase/firestore"
+import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where, onSnapshot, deleteDoc } from "firebase/firestore"
 import { db } from "./firebase"
 
 export const createUserDb = async (userId, userData) => {
@@ -7,19 +7,17 @@ export const createUserDb = async (userId, userData) => {
 
 export const createParkingOwner = async (userId, userData) => setDoc(doc(db, "owner", userId), userData);
 
-export const getUserDb = async (userId) => {
-    return getDoc(doc(db, "user", userId)).then(ds => ds.data())
-}
+export const getUserDb = async (userId) => getDoc(doc(db, "user", userId)).then(ds => ds.data());
 
-export const getOwnerDb = async (userId) => getDoc(doc(db, "owner", userId)).then(ds => ds.data())
+export const getOwnerDb = async (userId) => getDoc(doc(db, "owner", userId)).then(ds => ds.data());
 
 export const getParkingLots = async () => {
     return getDocs(collection(db, "owner"))
         .then(querySnapshot => querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
 }
 
-export const createReservation = async (userId, parkingLotId, parkingSpotId, StartTime, EndTime) => {
-    return await addDoc(collection(db, "reservations"), { userId, parkingLotId, parkingSpotId, StartTime, EndTime, status: "reserved" })
+export const addReservation = async (userId, parkingLotId, parkingSpotId, StartTime, EndTime, price) => {
+    return await addDoc(collection(db, "reservations"), { userId, parkingLotId, parkingSpotId, StartTime, EndTime, status: "reserved", price })
         .then(ref => getDoc(doc(db, "reservations", ref.id)))
         .then(snapShot => ({ id: snapShot.id, ...snapShot.data() }))
         .then(async (documentData) => {
@@ -36,12 +34,20 @@ export const createReservation = async (userId, parkingLotId, parkingSpotId, Sta
 }
 
 export const updateReservationStatus = async (reservationId, status) => {
-    console.log({ status })
     return await updateDoc(doc(db, "reservations", reservationId), {
         status
     })
 }
 
+export const onUserHistoryUpdate = (userId, setHistory) => {
+    return onSnapshot(doc(db, "user", userId), snapshot => setHistory(snapshot.data().history ? [...snapshot.data().history] : []))
+}
+
+/**
+ * Used for getting Reservation data from the Reservation document using user id
+ * @param {string} userId 
+ * @returns Reservation Data
+ */
 export const getReservationFromUser = async (userId) => {
     const ref = collection(db, "reservations");
     const q = query(ref, where("userId", "==", userId));
@@ -59,9 +65,23 @@ export const getReservationFromUser = async (userId) => {
         })
 }
 
+export const onUserReservationUpdates = (userId, setState) => {
+    const reservationQuery = query(collection(db, "reservations"), where("userId", "==", userId))
+    return onSnapshot(reservationQuery, (snapshot) => {
+        if (snapshot.docChanges().length == 0) setState(null);
+        else snapshot.docChanges().forEach(async (change) => {
+            const ref = doc(db, "owner", change.doc.data().parkingLotId);
+            const ownerData = await getDoc(ref).then(snapShot => snapShot.data());
+            setState(change.type, { ...change.doc.data(), id: change.doc.id, parkingLot: ownerData });
+        })
+    });
+}
+
 export const onReservationUpdates = async (reservationId, getDocData) => {
     return onSnapshot(doc(db, "reservations", reservationId), async (docSnapshot) => {
         const reservationData = docSnapshot.data();
+
+        console.log({ changes: docSnapshot.exists() })
 
         if (reservationData) {
             const ref = doc(db, "owner", reservationData.parkingLotId);
@@ -75,6 +95,24 @@ export const onReservationUpdates = async (reservationId, getDocData) => {
             getDocData(null)
         }
     })
+}
+
+export const completeReservation = async (reservationId) => {
+    const reservationData = await getDoc(doc(db, "reservations", reservationId))
+        .then(snapShot => ({ id: snapShot.id, ...snapShot.data() }));
+
+    await updateDoc(doc(db, "user", reservationData.userId), {
+        history: arrayUnion(reservationData)
+    });
+
+    await updateDoc(doc(db, "owner", reservationData.parkingLotId), {
+        history: arrayUnion(reservationData)
+    });
+
+    await deleteDoc(doc(db, "reservations", reservationId))
+        .then(console.log);
+
+    return reservationData.id
 }
 
 export const createParkingSpots = async (userId, parkingInfo) => {

@@ -1,15 +1,17 @@
 import Bkg from "../assets/img/dash-bkg.png"
 import "../assets/styles/css/Home.css"
-import { useAuth } from "../components/contexts/useAuth";
+import { useReservation } from "../components/contexts/Reservation/hooks";
 import ReservationStatus from "../components/ReservationStatus";
 import Reservation from "./User/Reservation";
-import { useNavigate } from "react-router-dom";
 
 
 export default function Home() {
-  const { currentUser } = useAuth();
-  const navigate = useNavigate();
-  console.log("home")
+  const { reservation, loading } = useReservation();
+  console.log({ reservation, loading })
+
+  if (loading) return <div className="user-loading-cont">
+    <h1>Retrieving Reservation Data...</h1>
+  </div>
 
   return (
     <div className="dashboard-cont">
@@ -17,12 +19,14 @@ export default function Home() {
         <div className="overlay"></div>
         <img src={Bkg} alt="" />
       </div>
-      {/* Transaction Button */}
-      
+
       {/* Page Title */}
       <h1>Find Your Space</h1>
-      {!currentUser.activeReservation ? <Reservation /> : <ReservationStatus reservation={currentUser.activeReservation} />}
-       <button onClick={() => navigate("/Transaction")} className="transact-button">Proceed to Payments</button>
+      {!reservation ?
+        <Reservation />
+        :
+        <ReservationStatus />
+      }
     </div>
   );
 }

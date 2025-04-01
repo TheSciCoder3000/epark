@@ -1,12 +1,18 @@
-import { updateReservationStatus } from "../api/Firestore"
+import { useNavigate } from "react-router-dom"
 import "../assets/styles/css/ReservationStatus.css"
+import { useReservation } from "./contexts/Reservation/hooks";
 
-function ReservationStatus({ reservation }) {
+function ReservationStatus() {
+    const { reservation, updateReservationStatus } = useReservation();
+    const navigate = useNavigate();
     const onUpdateReservation = async () => {
-        updateReservationStatus(reservation.id, reservation.status == "reserved" ? "occupied" : "finished")
+        if (reservation.status == "occupied") {
+            navigate("/Transaction")
+        } else updateReservationStatus(reservation.id, reservation.status == "reserved" ? "occupied" : "finished")
     }
 
-    console.log({ reservation })
+    const getPricingPerHour = (lotName) => reservation.parkingLot.lots.find(lot => lot.name == lotName)?.price
+
 
     return (
         <div className={`reservation-status-cont ${reservation.status}`}>
@@ -22,11 +28,11 @@ function ReservationStatus({ reservation }) {
                 </div>
                 <div className="detail-row">
                     <h4 className="detail-header">Price:</h4>
-                    <p className="parking-slot">{reservation.parkingLot.price}</p>
+                    <p className="parking-slot">{getPricingPerHour(reservation.parkingSpotId)}/hr</p>
                 </div>
 
                 <button className="reservation-control" onClick={onUpdateReservation}>
-                    {reservation.status == "reserved" ? "Occupy" : "Finish"}
+                    {reservation.status == "reserved" ? "Occupy" : "Pay"}
                 </button>
             </div>
         </div>

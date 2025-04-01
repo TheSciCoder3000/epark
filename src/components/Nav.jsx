@@ -1,8 +1,8 @@
 import { NavLink } from "react-router";
-import { FaTachometerAlt, FaUser, FaUserShield, FaHistory, FaCar} from "react-icons/fa";
+import { FaTachometerAlt, FaUser, FaUserShield, FaHistory, FaCar } from "react-icons/fa";
 import "../assets/styles/css/Navbar.css";
 import { BsHouseFill } from "react-icons/bs";
-import { useAuth } from "./contexts/useAuth";
+import { useAuth } from "./contexts/Auth/hooks";
 
 export default function Nav() {
   const { currentUser } = useAuth();

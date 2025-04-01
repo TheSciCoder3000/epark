@@ -2,7 +2,7 @@ import "../../assets/styles/css/AdminParkingLot.css";
 import { useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
 import { createParkingSpots } from '../../api/Firestore';
-import { useAuth } from '../../components/contexts/useAuth';
+import { useAuth } from '../../components/contexts/Auth/hooks';
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();

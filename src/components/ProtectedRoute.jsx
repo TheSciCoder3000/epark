@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router'
-import { useAuth } from './contexts/useAuth'
+import { useAuth } from './contexts/Auth/hooks'
 import Nav from './Nav';
 
 function ProtectedRoute({ role }) {

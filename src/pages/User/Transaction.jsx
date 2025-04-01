@@ -1,32 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Bkg from "../../assets/img/dash-bkg.png";
 import "../../assets/styles/css/Transaction.css"
+import { differenceInMilliseconds, formatDistance } from 'date-fns';
+import { completeReservation } from '../../api/Firestore';
+import { useReservation } from '../../components/contexts/Reservation/hooks';
 
 const Transaction = () => {
+    const { reservation } = useReservation();
     const navigate = useNavigate();
-    const [transactionData, setTransactionData] = useState([null]);
 
-    useEffect(() => {
-        setTransactionData ({
-            transactionID : `TXN-${Math.floor(Math.random() * 1000000)}`,
-            dateTime: new Date().toLocaleString(),
-            slotNumber: "1",
-            reservedHrs: "4hrs",
-            paymentAmount: "150",
-        });
-    }, []);
+    if (!reservation) return (
+        <div className="user-loading-cont">
+            <h4>Retrieving Reservation Data...</h4>
+        </div>
+    )
 
-    const handlePayment = () => {
-        alert("Payment successful!");
-        navigate("/Transaction-Success");
+    const handlePayment = async () => {
+        if (reservation) completeReservation(reservation.id)
+            .then(transactId => {
+                alert("Payment successful!");
+                navigate(`/Transaction-Success/${transactId}`);
+            })
+            .catch(err => {
+                alert("Something went wrong")
+            })
     }
 
-    if (!transactionData) {
-        return <div className="text-center">Loading transaction details...</div>;
+    const getDecimalHours = () => {
+        const diffMs = differenceInMilliseconds(reservation.EndTime.toDate(), reservation.StartTime.toDate()); // Get difference in milliseconds
+        return diffMs / (1000 * 60 * 60);
     }
+
     return (
-        
         <div className="dashboard-cont">
             <div className="home-background">
                 <div className="overlay"></div>
@@ -34,12 +39,11 @@ const Transaction = () => {
             </div>
             <div className="transactionData">
                 <h3>Confirm your Reservation</h3>
-                <div className ="transactionDetails">
-                    <p>Transaction ID: {transactionData.transactionID}</p>
-                    <p>Date and Time: {transactionData.dateTime}</p>
-                    <p>Slot Number: {transactionData.slotNumber}</p>
-                    <p>Reserved Hours: {transactionData.reservedHrs}</p>
-                    <p>Payment Amount: Php{transactionData.paymentAmount}</p>
+                <div className="transactionDetails">
+                    <p>Transaction ID: {reservation.id}</p>
+                    <p>Reserved hours: {reservation ? formatDistance(reservation.EndTime.toDate(), reservation.StartTime.toDate()) : null}</p>
+                    <p>Slot Number: {reservation.parkingSpotId}</p>
+                    <p>Payment Amount: Php{(getDecimalHours() * reservation.price).toFixed(2)}</p>
                 </div>
                 <button onClick={handlePayment} className='payment-btn'>Pay Now</button>
                 <button onClick={() => navigate("/")} className='cancel-bn'>Cancel</button>
