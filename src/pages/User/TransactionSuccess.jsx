@@ -17,9 +17,10 @@ const TransactionSuccess = () => {
     console.log({ history: getHistoryItem(id) })
 
     const getDecimalHours = () => {
-        const diffMs = differenceInMilliseconds(getHistoryItem(id).EndTime.toDate(), getHistoryItem(id).EndTime.toDate()); // Get difference in milliseconds
-        return diffMs / (1000 * 60 * 60);
+        const diffMs = differenceInMilliseconds(getHistoryItem(id).EndTime.toDate(), getHistoryItem(id).StartTime.toDate()); // Get difference in milliseconds
+        return diffMs / (1000.0 * 60.0 * 60.0);
     }
+
 
     const backHandler = () => navigate("/");
 
@@ -32,13 +33,14 @@ const TransactionSuccess = () => {
                 </div>
                 <h2>Payment Successful!</h2>
                 <div className="Sucess-transaction-details">
-                    <p><strong>Transaction ID:</strong> TXN-123456</p>
-                    <p><strong>Reservation Slot:</strong> {getHistoryItem(id).parkingSpotId}</p>
-                    <p><strong>Reserved Hours:</strong> {formatDistance(getHistoryItem(id).EndTime?.toDate(), getHistoryItem(id).StartTime?.toDate())}</p>
+                    <p><strong>Transaction ID:</strong><br /> TXN-123456</p>
+                    <p><strong>Reservation Slot:</strong><br /> {getHistoryItem(id).parkingSpotId}</p>
+                    <p><strong>Reserved Hours:</strong><br /> {formatDistance(getHistoryItem(id).EndTime?.toDate(), getHistoryItem(id).StartTime?.toDate())}</p>
                     <p>
                         <strong>
-                            Payment Amount: Php{(getDecimalHours() * getHistoryItem(id).price).toFixed(2)}
-                        </strong>
+                            Payment Amount:
+                        </strong><br />
+                        Php{(getDecimalHours() * getHistoryItem(id).price).toFixed(2)}
                     </p>
                 </div>
 
