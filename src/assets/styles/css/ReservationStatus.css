@@ -1,0 +1,48 @@
+.reservation-status-cont {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.reservation-status-cont .reservation-indicator {
+  padding: 1rem;
+  border-radius: 5px;
+}
+.reservation-status-cont .reservation-indicator.reserved {
+  background-color: #8eaa00;
+}
+.reservation-status-cont .reservation-indicator.occupied {
+  background-color: #62B347;
+}
+.reservation-status-cont .reservation-indicator .detail-row {
+  display: flex;
+  justify-content: space-between;
+}
+.reservation-status-cont .reservation-indicator .detail-row .detail-header {
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+.reservation-status-cont .reservation-indicator .detail-row .parking-location {
+  color: white;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.reservation-status-cont .reservation-indicator .detail-row .parking-slot {
+  color: white;
+}
+.reservation-status-cont .reservation-indicator .parking-name {
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+}
+.reservation-status-cont .reservation-control {
+  color: white;
+  border: 1px solid white;
+  background-color: transparent;
+  font-size: 2em;
+  border-radius: 7px;
+  padding: 0.6rem;
+  width: 100%;
+  margin-top: 2rem;
+}/*# sourceMappingURL=ReservationStatus.css.map */

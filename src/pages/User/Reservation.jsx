@@ -4,11 +4,10 @@ import VehicleSelection from "../../components/VehicleSelection";
 import ParkingLotsList from "../../components/ParkingLotsList";
 import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
-import { createReservation } from "../../api/Firestore";
 import { useAuth } from "../../components/contexts/useAuth";
 
-function Reservation() {
-    const { currentUser } = useAuth()
+function Reservation({ setReservation }) {
+    const { currentUser, createReservation } = useAuth()
     const [searchinput, setSearchinput] = useState("");
     const [selectedVehicle, setSelectedVehicle] = useState(null);
     const [selectedParkingLot, setSelectedParkingLot] = useState(null);
@@ -16,8 +15,13 @@ function Reservation() {
     const [start, setStart] = useState(null)
     const [end, setEnd] = useState(null)
 
+    const [enabled, setEnabled] = useState(true);
+
     const MakeReservationHandler = () => {
+        setEnabled(false)
         createReservation(currentUser.uid, selectedParkingLot.id, selectedParkingSpot.name, start, end)
+            .then(setReservation)
+            .then(() => setEnabled(true));
     }
 
     return (
@@ -53,7 +57,7 @@ function Reservation() {
                 <ParkingTimeSlot onStartChange={setStart} onEndChange={setEnd} />
             </div>}
 
-            <button onClick={MakeReservationHandler} className="transaction-btn" disabled={!selectedParkingLot || !selectedVehicle || !selectedParkingSpot}>
+            <button onClick={MakeReservationHandler} className="transaction-btn" disabled={!enabled || !selectedParkingLot || !selectedVehicle || !selectedParkingSpot}>
                 Reserve Now
             </button>
         </>
