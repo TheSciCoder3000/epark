@@ -2,11 +2,12 @@ import Bkg from "../assets/img/dash-bkg.png"
 import "../assets/styles/css/Home.css"
 import { useAuth } from "../components/contexts/useAuth";
 import Reservation from "./User/Reservation";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Home() {
   const { currentUser } = useAuth();
-
+  const navigate = useNavigate();
 
 
   return (
@@ -15,11 +16,15 @@ export default function Home() {
         <div className="overlay"></div>
         <img src={Bkg} alt="" />
       </div>
-
+      {/* Transaction Button */}
+      
       {/* Page Title */}
       <h1>Find Your Space</h1>
-
+    
       {!currentUser.activeReservation ? <Reservation /> : <h1>Reservation created</h1>}
+      
+      <button onClick={() => navigate("/Transaction")} className="transact-button">Proceed to Payments</button>
+      
     </div>
   );
 }

@@ -1,0 +1,51 @@
+/* Success heading */
+/* Success transaction details */
+/* Go Back Button */
+.Success-transaction {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  text-align: center;
+  background-color: #202020;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+  margin-top: 7rem;
+}
+.Success-transaction h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+.Sucess-transaction-details {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #202020;
+  border-radius: 8px;
+}
+.Sucess-transaction-details p {
+  margin-bottom: 10px;
+  color: rgb(174, 174, 174);
+}
+
+.back-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.back-button:hover {
+  background-color: #45a049;
+}
+.back-button:active {
+  background-color: #388e3c;
+}/*# sourceMappingURL=TransactionSuccess.css.map */
