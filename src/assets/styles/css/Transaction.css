@@ -34,7 +34,7 @@
 .payment-btn {
   width: 100%;
   padding: 12px;
-  background-color: #4CAF50;
+  background-color: #9DBA14;
   color: white;
   font-size: 18px;
   border-radius: 8px;
@@ -47,7 +47,7 @@
   background-color: #45a049;
 }
 .payment-btn:active {
-  background-color: #388e3c;
+  background-color: #9DBA14;
 }
 
 .cancel-bn {

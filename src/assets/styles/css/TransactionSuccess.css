@@ -15,7 +15,7 @@
 .Success-transaction h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #4CAF50;
+  color: #9DBA14;
   margin-bottom: 20px;
 }
 
@@ -35,7 +35,7 @@
 .back-button {
   width: 100%;
   padding: 12px;
-  background-color: #4CAF50;
+  background-color: #9DBA14;
   color: white;
   font-size: 18px;
   border-radius: 8px;
@@ -47,5 +47,5 @@
   background-color: #45a049;
 }
 .back-button:active {
-  background-color: #388e3c;
+  background-color: #9DBA14;
 }/*# sourceMappingURL=TransactionSuccess.css.map */
