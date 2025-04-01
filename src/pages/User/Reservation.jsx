@@ -6,6 +6,7 @@ import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
 import { useReservation } from "../../components/contexts/Reservation/hooks";
 
+
 function Reservation() {
     const { createReservation } = useReservation();
     const [searchinput, setSearchinput] = useState("");
@@ -30,7 +31,7 @@ function Reservation() {
             <div className="search-cont">
                 <input type="text" className="searchbar" placeholder="Search Parking Lots" onChange={e => setSearchinput(e.target.value)} />
                 <button className="search-btn">
-                    <FaSearch />
+                    <FaSearch fill="black" />
                 </button>
             </div>
 

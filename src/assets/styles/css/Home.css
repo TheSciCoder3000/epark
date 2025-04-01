@@ -98,15 +98,36 @@
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-}
-.dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type.selected {
-  background-color: #C5EB0D;
+  position: relative;
+  justify-content: end;
+  overflow: hidden;
 }
 .dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type h4 {
+  color: white;
   text-align: center;
+  z-index: 5;
 }
 .dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type img {
-  flex: 1;
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type .filter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.454);
+}
+.dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type.selected .filter {
+  background-color: rgba(91, 109, 0, 0.3882352941);
 }
 .dashboard-cont .collection-cont .parking-history-cont {
   display: flex;
@@ -150,6 +171,13 @@
 }
 .dashboard-cont .collection-cont .parking-timeslot-cont {
   margin-bottom: 5rem;
+}
+.dashboard-cont .collection-cont .parking-timeslot-cont .field {
+  display: flex;
+}
+.dashboard-cont .collection-cont .parking-timeslot-cont label {
+  display: block;
+  width: 7rem;
 }
 .dashboard-cont .transaction-btn {
   width: 100%;

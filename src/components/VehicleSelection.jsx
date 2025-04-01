@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react"
+import MotorImg from "../assets/img/motor.jpg";
+import CarImg from "../assets/img/car.jpg";
 
 const VehicleTypes = [
   {
-    name: "Motorcycle"
+    name: "Motorcycle",
+    src: MotorImg
   },
   {
-    name: "Car"
+    name: "Car",
+    src: CarImg
   },
   {
-    name: "Truck"
+    name: "Truck",
+    src: null
   },
 ]
 
@@ -23,8 +28,9 @@ function VehicleSelection({ onSelect }) {
         <div className={`vehicle-type${vehicleSelected === type.name ? " selected" : ""}`}
           key={index}
           onClick={() => setVehicleSelected(type.name)}>
-          <img src="" alt={`${type.name}-img`} />
+          <img src={type.src} alt={`${type.name}-img`} />
           <h4>{type.name}</h4>
+          <div className="filter" />
         </div>
       ))}
     </div>
