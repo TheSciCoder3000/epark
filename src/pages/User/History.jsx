@@ -66,7 +66,8 @@ function History() {
                     {history.map((item) => (
                         <div key={item.id} className="prev-trans-item">
                             <div className="main-details">
-                                <h4 className='name'>{item.id}</h4>
+                                <h4 className='name'>{item.parkingName}</h4>
+                                <p className="slot">{item.parkingSpotId}</p>
                                 <p className="date">{format(item.StartTime.toDate(), "LLL d, yyyy")}</p>
                             </div>
 

@@ -40,7 +40,17 @@ export const updateReservationStatus = async (reservationId, status) => {
 }
 
 export const onUserHistoryUpdate = (userId, setHistory) => {
-    return onSnapshot(doc(db, "user", userId), snapshot => setHistory(snapshot.data().history ? [...snapshot.data().history] : []))
+    return onSnapshot(doc(db, "user", userId), async (snapshot) => {
+        let historyData = snapshot.data().history;
+        if (!historyData) setHistory([]);
+        else {
+            historyData = await Promise.all(historyData.map(async (item) => {
+                const parkingData = await getDoc(doc(db, "owner", item.parkingLotId)).then(docu => docu.data());
+                return { ...item, ...parkingData }
+            }))
+            setHistory(historyData)
+        }
+    })
 }
 export const onAdminHistoryUpdate = (userId, setHistory) => {
     return onSnapshot(doc(db, "owner", userId), snapshot => setHistory(snapshot.data().history ? [...snapshot.data().history] : []))
