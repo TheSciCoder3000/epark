@@ -1,28 +1,7 @@
-import { differenceInHours, differenceInMinutes, format, formatDistance } from 'date-fns';
+import { differenceInHours, differenceInMinutes, format } from 'date-fns';
 import { useNavigate } from 'react-router-dom'
 import "../../assets/styles/css/UserHistory.css"
 import { useReservation } from '../../components/contexts/Reservation/hooks';
-
-const previousTransactions = [
-    {
-        id: 1,
-        date: new Date("03/31/2025"),
-        duration: "3 hrs",
-        location: "De La Salle University"
-    },
-    {
-        id: 2,
-        date: new Date("04/5/2025"),
-        duration: "2 hrs",
-        location: "SM Moa"
-    },
-    {
-        id: 3,
-        date: new Date("04/10/2025"),
-        duration: "3.5 hrs",
-        location: "Vikings Manila"
-    },
-]
 
 function History() {
     const { history } = useReservation();
