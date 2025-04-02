@@ -3,7 +3,7 @@
   background-color: #202020;
 }
 .history-cont .top-bar {
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
 }
 .history-cont .top-bar button {
@@ -28,20 +28,22 @@
   margin-left: 1rem;
 }
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item {
-  padding: 1rem;
+  background-color: rgba(73, 73, 73, 0.121);
+  margin: 0.8rem;
+  padding: 1.2rem;
   display: flex;
 }
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details {
   flex: 5;
 }
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details .name {
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin-bottom: 0.5rem;
-  color: white;
+  color: rgb(188, 188, 188);
 }
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item .main-details .date {
-  font-size: 1em;
-  color: rgb(169, 169, 169);
+  font-size: 0.86em;
+  color: rgba(169, 169, 169, 0.724);
 }
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item .duration {
   flex: 1;

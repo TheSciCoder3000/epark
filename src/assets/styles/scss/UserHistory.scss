@@ -3,7 +3,7 @@
     background-color: #202020;
 
     .top-bar {
-        padding: 2rem 0;
+        padding: 1rem 0;
         display: flex;
 
         button {
@@ -35,21 +35,23 @@
 
         .transaction-items {
             .prev-trans-item {
-                padding: 1rem;
+                background-color: rgba(73, 73, 73, 0.121);
+                margin: 0.8rem;
+                padding: 1.2rem;
                 display: flex;
 
                 .main-details {
                     flex: 5;
 
                     .name {
-                        font-size: 1.3em;
+                        font-size: 1.1em;
                         margin-bottom: 0.5rem;
-                        color: white;
+                        color: rgb(188, 188, 188);
                     }
 
                     .date {
-                        font-size: 1em;
-                        color: rgb(169, 169, 169);
+                        font-size: .86em;
+                        color: rgba(169, 169, 169, 0.724);
                     }
                 }
 
