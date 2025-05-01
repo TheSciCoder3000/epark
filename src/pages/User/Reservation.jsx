@@ -5,6 +5,7 @@ import ParkingLotsList from "../../components/ParkingLotsList";
 import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
 import { useReservation } from "../../components/contexts/Reservation/hooks";
+import ParkingLotImg from "../../assets/img/cinema-img.png";
 
 
 function Reservation() {
@@ -50,6 +51,9 @@ function Reservation() {
             {/* Parking Spot */}
             {selectedParkingLot && <div className="collection-cont">
                 <h3 className="collection-header">Parking Spot</h3>
+                <div className="parking-img-cont">
+                    <img src={ParkingLotImg} alt="" />
+                </div>
                 <ParkingSpotList parkingSpots={selectedParkingLot.lots} onSelect={setSelectedParkingSpot} />
             </div>}
 

@@ -75,6 +75,9 @@
 .dashboard-cont .collection-cont {
   margin-bottom: 3rem;
 }
+.dashboard-cont .collection-cont .parking-img-cont img {
+  width: 100%;
+}
 .dashboard-cont .collection-cont .collection-header {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;

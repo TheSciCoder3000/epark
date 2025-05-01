@@ -81,6 +81,12 @@
     .collection-cont {
         margin-bottom: 3rem;
 
+        .parking-img-cont {
+            img {
+                width: 100%;
+            }
+        }
+
         .collection-header {
             color: rgba(255, 255, 255, 0.70);
             font-weight: 400;
