@@ -11,8 +11,8 @@ export default function Nav() {
     <nav className="navbar">
       {currentUser.role === "User" ?
         <>
-          <NavItem to="/history" icon={<FaTachometerAlt />} />
           <NavItem to="/" icon={<BsHouseFill />} />
+          <NavItem to="/history" icon={<FaTachometerAlt />} />
         </>
         :
         <>

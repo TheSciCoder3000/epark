@@ -26,6 +26,19 @@ export const getOwnerDb = async (userId) => getDoc(doc(db, "owner", userId)).the
 export const getParkingLots = async () => {
     return getDocs(collection(db, "owner"))
         .then(querySnapshot => querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+        .then(async (data) => {
+            console.log(data)
+            for (const owner of data) {
+                owner.lots = [];
+
+                for (const lotRef of owner.lotsRef) {
+                    const lotData = await getDoc(lotRef);
+                    owner.lots.push(lotData.data());
+                }
+            }
+
+            return data;
+        })
 }
 
 export const addReservation = async (userId, parkingLotId, parkingSpotId, StartTime, EndTime, price) => {
