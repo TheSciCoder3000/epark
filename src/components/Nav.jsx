@@ -11,27 +11,24 @@ export default function Nav() {
     <nav className="navbar">
       {currentUser.role === "User" ?
         <>
-          <NavItem to="/history" icon={<FaTachometerAlt />} label="History" />
-          <NavItem to="/" icon={<BsHouseFill />} label="Dashboard" />
-          <NavItem to="/account" icon={<FaUser />} label="Account" />
+          <NavItem to="/history" icon={<FaTachometerAlt />} />
+          <NavItem to="/" icon={<BsHouseFill />} />
         </>
         :
         <>
-          <NavItem to="/admin-dashboard" icon={<FaUserShield />} label="Dashboard Admin" />
-          <NavItem to="/admin-parkinglots" icon={<FaCar />} label="Parking Lots" />
-          <NavItem to="/admin-history" icon={<FaHistory />} label="History" />
-          <NavItem to="/admin-settings" icon={<FaUser />} label="Account" />
+          <NavItem to="/admin-dashboard" icon={<FaUserShield />} />
+          <NavItem to="/admin-parkinglots" icon={<FaCar />} />
+          <NavItem to="/admin-history" icon={<FaHistory />} />
         </>
       }
     </nav>
   );
 }
 
-function NavItem({ to, icon, label }) {
+function NavItem({ to, icon }) {
   return (
     <NavLink to={to} className="nav-item">
       {icon}
-      <span className="nav-label">{label}</span>
     </NavLink>
   );
 }
