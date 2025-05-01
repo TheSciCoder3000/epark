@@ -21,7 +21,7 @@ const Transaction = () => {
                 alert("Payment successful!");
                 navigate(`/Transaction-Success/${transactId}`);
             })
-            .catch(err => {
+            .catch(() => {
                 alert("Something went wrong")
             })
     }
@@ -40,10 +40,22 @@ const Transaction = () => {
             <div className="transactionData">
                 <h3>Confirm your Reservation</h3>
                 <div className="transactionDetails">
-                    <p>Transaction ID: {reservation.id}</p>
-                    <p>Reserved hours: {reservation ? formatDistance(reservation.EndTime.toDate(), reservation.StartTime.toDate()) : null}</p>
-                    <p>Slot Number: {reservation.parkingSpotId}</p>
-                    <p>Payment Amount: Php{(getDecimalHours() * reservation.price).toFixed(2)}</p>
+                    <div className="detail-field">
+                        <p>Transaction ID:</p>
+                        <p className='detail-data'>{reservation.id}</p>
+                    </div>
+                    <div className="detail-field">
+                        <p>Reserved hours:</p>
+                        <p className='detail-data'>{reservation ? formatDistance(reservation.EndTime.toDate(), reservation.StartTime.toDate()) : null}</p>
+                    </div>
+                    <div className="detail-field">
+                        <p>Slot Number:</p>
+                        <p className='detail-data'>{reservation.parkingSpotId}</p>
+                    </div>
+                    <div className="detail-field">
+                        <p>Payment Amount:</p>
+                        <p className='detail-data'>Php{(getDecimalHours() * reservation.price).toFixed(2)}</p>
+                    </div>
                 </div>
                 <button onClick={handlePayment} className='payment-btn'>Pay Now</button>
                 <button onClick={() => navigate("/")} className='cancel-bn'>Cancel</button>
