@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
 import { createParkingSpots } from '../../api/Firestore';
 import { useAuth } from '../../components/contexts/Auth/hooks';
+import ParkingLotImg from "../../assets/img/cinema-img.png";
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
@@ -55,6 +56,11 @@ const AdminParkingLot = () => {
             {/* Parking Log List */}
             <div className="parking-lots-cont">
                 <h2 className="header">Parking Log</h2>
+
+                <div className="parking-lot-img-cont">
+                    <img src={ParkingLotImg} alt="" />
+                </div>
+
                 <div className="parking-controls-cont">
                     <button onClick={toggleModal} className="add-parking-btn">+</button>
                 </div>

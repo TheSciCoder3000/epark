@@ -11,6 +11,13 @@
   padding: 0;
   padding-top: 1rem;
 }
+.dashboard-cont .parking-lot-img-cont {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+.dashboard-cont .parking-lot-img-cont img {
+  width: 100%;
+}
 .dashboard-cont .parking-log-item {
   background-color: #333;
   color: white;
