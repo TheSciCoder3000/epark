@@ -75,6 +75,12 @@
 .dashboard-cont .collection-cont {
   margin-bottom: 3rem;
 }
+.dashboard-cont .collection-cont .parking-img-cont {
+  margin-top: 1.5rem;
+}
+.dashboard-cont .collection-cont .parking-img-cont img {
+  width: 100%;
+}
 .dashboard-cont .collection-cont .collection-header {
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
@@ -156,15 +162,16 @@
   overflow: auto;
 }
 .dashboard-cont .collection-cont .parking-spot-cont .spot-item {
-  aspect-ratio: 1/1;
-  height: 10rem;
+  height: 4rem;
   background-color: #D7D6D6;
-  padding: 0.9rem;
+  padding: 0.9rem 1.5rem;
   border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dashboard-cont .collection-cont .parking-spot-cont .spot-item p {
-  color: #106CE5;
-  margin-top: 0.2rem;
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item h4, .dashboard-cont .collection-cont .parking-spot-cont .spot-item p {
+  margin: 0;
 }
 .dashboard-cont .collection-cont .parking-spot-cont .spot-item.selected {
   background-color: #C5EB0D;
@@ -174,6 +181,8 @@
 }
 .dashboard-cont .collection-cont .parking-timeslot-cont .field {
   display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 .dashboard-cont .collection-cont .parking-timeslot-cont label {
   display: block;

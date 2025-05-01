@@ -11,9 +11,6 @@ function ReservationStatus() {
         } else updateReservationStatus(reservation.id, reservation.status == "reserved" ? "occupied" : "finished")
     }
 
-    const getPricingPerHour = (lotName) => reservation.parkingLot.lots.find(lot => lot.name == lotName)?.price
-
-
     return (
         <div className={`reservation-status-cont ${reservation.status}`}>
             <div className={`reservation-indicator ${reservation.status}`}>
@@ -28,7 +25,7 @@ function ReservationStatus() {
                 </div>
                 <div className="detail-row">
                     <h4 className="detail-header">Price:</h4>
-                    <p className="parking-slot">{getPricingPerHour(reservation.parkingSpotId)}/hr</p>
+                    <p className="parking-slot">{reservation.price}/hr</p>
                 </div>
 
                 <button className="reservation-control" onClick={onUpdateReservation}>

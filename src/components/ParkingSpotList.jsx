@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
 
-function ParkingSpotList({ parkingSpots, onSelect }) {
+function ParkingSpotList({ parkingSpots, onSelect, vehicleType }) {
     const [LotSelected, setLotSelected] = useState(null);
     useEffect(() => onSelect && onSelect(LotSelected), [LotSelected, onSelect]);
 
     return (
         <div className="parking-spot-cont">
-            {parkingSpots.map((data, index) => (
+            {parkingSpots.filter(spot => spot.type == vehicleType).map((data, index) => (
                 <div key={index} className={`spot-item${LotSelected?.name === data.name ? " selected" : ""}`} onClick={() => setLotSelected(data)}>
-                    <div className="history-content">
-                        <h4>{data.name}</h4>
-                        <p>{data.location}</p>
-                    </div>
+                    <h4>{data.name}</h4>
                 </div>
             ))}
         </div>

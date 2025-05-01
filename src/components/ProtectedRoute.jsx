@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 import { useAuth } from './contexts/Auth/hooks'
 import Nav from './Nav';
+import TopBar from './TopBar';
 
 function ProtectedRoute({ role }) {
     const { currentUser, loading } = useAuth();
@@ -9,6 +10,7 @@ function ProtectedRoute({ role }) {
         if (currentUser) {
             if (currentUser.role != role) return <Navigate to="/admin-dashboard" />
             return <>
+                <TopBar accountPath={role == "Admin" ? "/admin-settings" : "/account"} />
                 <Outlet />
                 <Nav />
             </>
