@@ -87,9 +87,13 @@ $background-color_5: transparent;
         border-radius: 5px;
         cursor: pointer;
 
-        &:hover {
-        background-color: $background-color_3;
-        }
+            &:hover {
+            background-color: $background-color_3;
+            }
+
+            &:disabled {
+                background-color: gray;
+            }
         }
     }
 

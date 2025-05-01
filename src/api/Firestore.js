@@ -1,4 +1,4 @@
-import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where, onSnapshot, deleteDoc } from "firebase/firestore"
+import { setDoc, doc, getDoc, collection, getDocs, updateDoc, arrayUnion, addDoc, query, where, onSnapshot, deleteDoc, arrayRemove } from "firebase/firestore"
 import { db } from "./firebase"
 
 export const createUserDb = async (userId, userData) => {
@@ -9,7 +9,19 @@ export const createParkingOwner = async (userId, userData) => setDoc(doc(db, "ow
 
 export const getUserDb = async (userId) => getDoc(doc(db, "user", userId)).then(ds => ds.data());
 
-export const getOwnerDb = async (userId) => getDoc(doc(db, "owner", userId)).then(ds => ds.data());
+export const getOwnerDb = async (userId) => getDoc(doc(db, "owner", userId)).then(async (ds) => {
+    let ownerData = ds.data();
+
+    console.log({ownerData})
+    ownerData.lots = [];
+
+    for (const lotRef of ownerData.lotsRef) {
+        const lotSnap = await getDoc(lotRef);
+        ownerData.lots.push({id: lotSnap.id, ...lotSnap.data()});
+    }
+
+    return ownerData;
+});
 
 export const getParkingLots = async () => {
     return getDocs(collection(db, "owner"))
@@ -137,7 +149,26 @@ export const completeReservation = async (reservationId) => {
 }
 
 export const createParkingSpots = async (userId, parkingInfo) => {
+    const lotRef = await addDoc(
+        collection(db, "lots"),
+        {
+            ownerRef: doc(db, "owner", userId),
+            ...parkingInfo
+        }
+    )
+
     return await updateDoc(doc(db, "owner", userId), {
-        lots: arrayUnion(parkingInfo)
+        lotsRef: arrayUnion(lotRef)
+    })
+}
+
+export const deleteParkingSpot = async (userId, parkingid) => {
+    console.log({parkingid})
+    const lotRef = doc(db, "lots", parkingid);
+
+    await deleteDoc(lotRef);
+
+    return updateDoc(doc(db, "owner", userId), {
+        lotsRef: arrayRemove(lotRef)
     })
 }

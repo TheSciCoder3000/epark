@@ -1,19 +1,17 @@
 import "../../assets/styles/css/AdminParkingLot.css";
 import { useEffect, useState } from 'react';
 import Bkg from "../../assets/img/dash-bkg.png";
-import { createParkingSpots } from '../../api/Firestore';
+import { createParkingSpots, deleteParkingSpot } from '../../api/Firestore';
 import { useAuth } from '../../components/contexts/Auth/hooks';
 import ParkingLotImg from "../../assets/img/cinema-img.png";
+import { BsHandIndexFill } from "react-icons/bs";
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
-    const [parkingLog, setParkingLog] = useState(currentUser.lots.map(item => ({
-        parkingSlot: item.name,
-        vehicleType: item.type,
-        price: item.price
-    })));
+    const [parkingLog, setParkingLog] = useState(currentUser.lots);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [newLog, setNewLog] = useState({ parkingSlot: "", vehicleType: "", price: 0 });
+    const [newLog, setNewLog] = useState({ name: "", type: "", price: 0 });
+    const [adding, setAdding] = useState(false);
 
     useEffect(() => {
 
@@ -28,22 +26,32 @@ const AdminParkingLot = () => {
     };
 
     const addParkingLog = () => {
+        setAdding(true);
+        if (parkingLog.find(lot => lot.name === newLog.name)) {
+            setAdding(false);
+            return;
+        }
+
         createParkingSpots(currentUser.uid, {
-            name: newLog.parkingSlot,
-            type: newLog.vehicleType,
+            name: newLog.name,
+            type: newLog.type,
             price: parseFloat(newLog.price)
         })
             .then(() => {
                 console.log([...parkingLog, newLog])
                 setParkingLog([...parkingLog, newLog]);
-                setNewLog({ parkingSlot: "", vehicleType: "", price: 0 });
+                setNewLog({ name: "", type: "", price: 0 });
                 toggleModal();
+                setAdding(false);
             });
     };
 
     const deleteParkingLog = (index) => {
-        const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
-        setParkingLog(updatedParkingLog);
+        deleteParkingSpot(currentUser.uid, parkingLog[index].id)
+            .then(() => {
+                const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
+                setParkingLog(updatedParkingLog);
+            });
     };
 
     return (
@@ -68,9 +76,9 @@ const AdminParkingLot = () => {
                     <ul className="parking-log-list">
                         {parkingLog?.map((log, index) => (
                             <li key={index} className="parking-log-item">
-                                Slot: {log.parkingSlot}
+                                Slot: {log.name}
                                 <br />
-                                Type: {log.vehicleType}
+                                Type: {log.type}
                                 <button className="delete-btn" onClick={() => deleteParkingLog(index)}>
                                     🗑️
                                 </button>
@@ -85,10 +93,10 @@ const AdminParkingLot = () => {
                 <div className="modal-overlay" onClick={toggleModal}>
                     <div className="modal-drawer" onClick={(e) => e.stopPropagation()}>
                         <h3 style={{ color: "white" }}>Add Parking Log</h3>
-                        <input type="text" name="parkingSlot" placeholder="Parking Slot Number" value={newLog.parkingSlot} onChange={handleInputChange} />
-                        <input type="text" name="vehicleType" placeholder="Vehicle Type" value={newLog.vehicleType} onChange={handleInputChange} />
+                        <input type="text" name="name" placeholder="Parking Slot Number" value={newLog.name} onChange={handleInputChange} />
+                        <input type="text" name="type" placeholder="Vehicle Type" value={newLog.type} onChange={handleInputChange} />
                         <input type="number" name="price" placeholder="Price per hour" value={newLog.price} onChange={handleInputChange} />
-                        <button onClick={addParkingLog}>Add Log</button>
+                        <button disabled={adding} className="add-btn" onClick={addParkingLog}>Add Log</button>
                     </div>
                 </div>
             )}

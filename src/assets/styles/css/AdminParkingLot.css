@@ -73,6 +73,9 @@
 .dashboard-cont .modal-drawer button:hover {
   background-color: #45a049;
 }
+.dashboard-cont .modal-drawer button:disabled {
+  background-color: gray;
+}
 .dashboard-cont .parking-controls-cont {
   display: flex;
   justify-content: end;
