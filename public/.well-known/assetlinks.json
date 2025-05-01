@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.web.dlsud_epark.twa",
+        "sha256_cert_fingerprints": ["D5:D9:9F:3E:A9:BE:91:25:80:DA:C0:7D:8B:0E:87:6E:D4:E2:68:AA:A6:87:96:19:DD:A1:32:6B:EC:CE:5D:AA"]
+      }
+    }]
