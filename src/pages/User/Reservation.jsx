@@ -50,7 +50,7 @@ function Reservation() {
 
 
             {/* Parking Spot */}
-            {selectedVehicle && <div className="collection-cont">
+            {(selectedVehicle && selectedParkingLot) && <div className="collection-cont">
                 <h3 className="collection-header">Parking Spot</h3>
                 <div className="parking-img-cont">
                     <img src={ParkingLotImg} alt="" />
