@@ -36,25 +36,26 @@ function Reservation() {
                 </button>
             </div>
 
-            {/* Vehicle Type */}
-            <div className="collection-cont">
-                <h3 className="collection-header">Your Vehicle</h3>
-                <VehicleSelection onSelect={setSelectedVehicle} />
-            </div>
-
             {/* Parking Space */}
             <div className="collection-cont">
                 <h3 className="collection-header">Parking Location</h3>
                 <ParkingLotsList filter={searchinput} onSelect={setSelectedParkingLot} />
             </div>
 
+            {/* Vehicle Type */}
+            <div className="collection-cont">
+                <h3 className="collection-header">Your Vehicle</h3>
+                <VehicleSelection onSelect={setSelectedVehicle} />
+            </div>
+
+
             {/* Parking Spot */}
-            {selectedParkingLot && <div className="collection-cont">
+            {selectedVehicle && <div className="collection-cont">
                 <h3 className="collection-header">Parking Spot</h3>
                 <div className="parking-img-cont">
                     <img src={ParkingLotImg} alt="" />
                 </div>
-                <ParkingSpotList parkingSpots={selectedParkingLot.lots} onSelect={setSelectedParkingSpot} />
+                <ParkingSpotList parkingSpots={selectedParkingLot.lots} vehicleType={selectedVehicle} onSelect={setSelectedParkingSpot} />
             </div>}
 
             {selectedParkingSpot && <div className="collection-cont">

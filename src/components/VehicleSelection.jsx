@@ -4,7 +4,7 @@ import CarImg from "../assets/img/car.jpg";
 
 const VehicleTypes = [
   {
-    name: "Motorcycle",
+    name: "Motor",
     src: MotorImg
   },
   {

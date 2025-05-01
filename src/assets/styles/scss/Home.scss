@@ -82,6 +82,8 @@
         margin-bottom: 3rem;
 
         .parking-img-cont {
+            margin-top: 1.5rem;
+            
             img {
                 width: 100%;
             }
@@ -182,15 +184,16 @@
             overflow: auto;
 
             .spot-item {
-                aspect-ratio: 1/1;
-                height: 10rem;
+                height: 4rem;
                 background-color: #D7D6D6;
-                padding: 0.9rem;
+                padding: 0.9rem 1.5rem;
                 border-radius: 7px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                p {
-                    color: #106CE5;
-                    margin-top: 0.2rem;
+                h4, p {
+                    margin: 0;
                 }
 
                 &.selected {
