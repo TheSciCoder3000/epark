@@ -1,0 +1,117 @@
+.total-revenue-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+
+    .revenue-counter {
+        font-size: 3em;
+        color: #c5eb0d;
+        margin: 0;
+        margin-bottom: 0.8rem;
+    }
+
+    .desc {
+        font-size: 1.2em;
+        color: #a6a6a6;
+    }
+}
+
+/* Page Styling */
+.history-title {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: gray;
+}
+
+/* Responsive Table */
+.history-container {
+    width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+
+    .transaction-cont {
+        display: flex;
+        margin-bottom: 2.5rem;
+
+        p {
+            font-size: 0.95em;
+            color: #979797;
+        }
+
+        .main-info {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+
+            h2 {
+                font-size: 1.3em;
+                color: #cccccc;
+            }
+        }
+
+        .sub-info {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+
+            h3 {
+                font-size: 1em;
+                color: #00bb00;
+            }
+        }
+    }
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.history-table th,
+.history-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.history-table th {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Paid / Unpaid Labels */
+.paid {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.unpaid {
+    color: #ff5733;
+    font-weight: bold;
+}
+
+/* Mobile-Friendly Table - Cards */
+@media screen and (max-width: 768px) {
+    .history-table thead {
+        display: none;
+    }
+
+    .history-table .mobile-card td {
+        display: block;
+        width: 100%;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        padding: 12px;
+        text-align: left;
+    }
+
+    .card-content p {
+        margin: 5px 0;
+        font-size: 1rem;
+        color: aliceblue;
+    }
+}

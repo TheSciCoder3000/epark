@@ -1,6 +1,5 @@
 import { useAuth } from "../components/contexts/Auth/hooks";
 import { useNavigate } from "react-router-dom";
-import Bkg from "../assets/img/dash-bkg.png";
 import "../assets/styles/css/Account.css";
 
 export default function Account() {

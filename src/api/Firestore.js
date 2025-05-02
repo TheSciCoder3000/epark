@@ -120,9 +120,25 @@ export const onUserHistoryUpdate = (userId, setHistory) => {
     });
 };
 export const onAdminHistoryUpdate = (userId, setHistory) => {
-    return onSnapshot(doc(db, "owner", userId), (snapshot) =>
-        setHistory(snapshot.data().history ? [...snapshot.data().history] : [])
-    );
+    return onSnapshot(doc(db, "owner", userId), async (snapshot) => {
+        let historyData = snapshot.data().history;
+        if (!historyData) setHistory([]);
+        else {
+            console.log({ historyData });
+            historyData = await Promise.all(
+                historyData.map(async (item) => {
+                    const parkingData = await getDoc(item.parkingLotRef).then(
+                        (docu) => docu.data()
+                    );
+                    const userData = await getDoc(item.userRef).then((doc) =>
+                        doc.data()
+                    );
+                    return { ...item, parkingLot: parkingData, user: userData };
+                })
+            );
+            setHistory(historyData);
+        }
+    });
 };
 
 export const onUserReservationUpdates = (userId, setState) => {
