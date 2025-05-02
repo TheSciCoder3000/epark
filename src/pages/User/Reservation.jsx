@@ -6,6 +6,7 @@ import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
 import { useReservation } from "../../components/contexts/Reservation/hooks";
 import ParkingLotImg from "../../assets/img/cinema-img.png";
+import { GetParkingImage } from "../../api/storage";
 
 function Reservation() {
     const { createReservation } = useReservation();
@@ -18,6 +19,8 @@ function Reservation() {
     const [end, setEnd] = useState(new Date());
 
     const [enabled, setEnabled] = useState(true);
+
+    const [ParkingLotImg, setParkingLotImg] = useState(null);
 
     const MakeReservationHandler = () => {
         setEnabled(false);
@@ -50,7 +53,11 @@ function Reservation() {
                 <h3 className="collection-header">Parking Location</h3>
                 <ParkingLotsList
                     filter={searchinput}
-                    onSelect={setSelectedParkingLot}
+                    onSelect={(parkingSpot) => {
+                        if (!parkingSpot) return;
+                        setSelectedParkingLot(parkingSpot);
+                        GetParkingImage(parkingSpot.id).then(setParkingLotImg);
+                    }}
                 />
             </div>
 
