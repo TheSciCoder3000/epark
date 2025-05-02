@@ -10,6 +10,7 @@ function ParkingLotImgForm() {
     const [loading, setLoading] = useState(true);
     const { currentUser } = useAuth();
     const [editMode, setEditMode] = useState(false);
+    const [uploading, setUploading] = useState(false);
 
     useEffect(() => {
         GetParkingImage(currentUser.uid)
@@ -23,11 +24,14 @@ function ParkingLotImgForm() {
     const uploadHandler = () => {
         if (imageUpload == null) return;
 
+        setUploading(true);
+
         SaveParkingImage(currentUser.uid, imageUpload)
             .then(setLotImg)
             .finally(() => {
                 setEditMode(false);
                 setLoading(false);
+                setUploading(false);
             });
     };
 
@@ -51,7 +55,11 @@ function ParkingLotImgForm() {
                         name="parking-lot"
                         onChange={(e) => setImageUpload(e.target.files[0])}
                     />
-                    <button onClick={uploadHandler} className="upload-btn">
+                    <button
+                        disabled={uploading}
+                        onClick={uploadHandler}
+                        className="upload-btn"
+                    >
                         Upload
                     </button>
                 </div>

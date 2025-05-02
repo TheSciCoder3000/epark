@@ -45,6 +45,11 @@ $background-color_5: transparent;
         .upload-btn {
             display: block;
             background-color: #282828;
+
+            &:disabled {
+                background-color: #565656;
+                color: #6b6b6b;
+            }
         }
     }
 

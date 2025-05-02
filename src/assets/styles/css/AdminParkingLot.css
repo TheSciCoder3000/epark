@@ -32,6 +32,10 @@
   display: block;
   background-color: #282828;
 }
+.dashboard-cont .parking-lot-img-cont .upload-btn:disabled {
+  background-color: #565656;
+  color: #6b6b6b;
+}
 .dashboard-cont .parking-log-item {
   background-color: #333;
   color: white;
