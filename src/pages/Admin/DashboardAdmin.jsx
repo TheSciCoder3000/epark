@@ -22,31 +22,6 @@ const DashboardAdmin = () => {
     const { currentUser } = useAuth();
     const { reservation, history } = useReservation();
 
-    // Sample Parking Log Data
-    const [parkingLog, setParkingLog] = useState([
-        {
-            client: "John Doe",
-            plate: "XYZ 123",
-            ParkingSpot: 1,
-            reservedHours: 4,
-            hoursLeft: 2,
-        },
-        {
-            client: "Jane Smith",
-            plate: "ABC 789",
-            ParkingSpot: 4,
-            reservedHours: 3,
-            hoursLeft: 1,
-        },
-        {
-            client: "Alice Brown",
-            plate: "DEF 456",
-            ParkingSpot: 7,
-            reservedHours: 5,
-            hoursLeft: 3,
-        },
-    ]);
-
     const getTodaysRevenue = (transactionList) => {
         let revenueCounter = 0;
         transactionList.forEach((trans) => {
@@ -119,8 +94,8 @@ const DashboardAdmin = () => {
             </div>
 
             <div className="recents-cont">
-                <h2 className="header">Recents</h2>
-                <ParkingLog logs={parkingLog} />
+                <h2 className="header">Pending</h2>
+                <ParkingLog logs={reservation || []} />
             </div>
         </div>
     );

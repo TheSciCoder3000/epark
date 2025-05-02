@@ -69,8 +69,8 @@ export const addReservation = async (
     price
 ) => {
     return await addDoc(collection(db, "reservations"), {
-        userId,
-        parkingLotId,
+        userRef: doc(db, "user", userId),
+        parkingLotRef: doc(db, "owner", parkingLotId),
         parkingSpotId,
         StartTime,
         EndTime,
@@ -82,7 +82,7 @@ export const addReservation = async (
         .then((snapShot) => ({ id: snapShot.id, ...snapShot.data() }))
         .then(async (documentData) => {
             if (documentData) {
-                const ref = doc(db, "owner", documentData.parkingLotId);
+                const ref = documentData.parkingLotRef;
                 const ownerData = await getDoc(ref).then((snapShot) =>
                     snapShot.data()
                 );
@@ -106,11 +106,12 @@ export const onUserHistoryUpdate = (userId, setHistory) => {
         let historyData = snapshot.data().history;
         if (!historyData) setHistory([]);
         else {
+            console.log({ historyData });
             historyData = await Promise.all(
                 historyData.map(async (item) => {
-                    const parkingData = await getDoc(
-                        doc(db, "owner", item.parkingLotId)
-                    ).then((docu) => docu.data());
+                    const parkingData = await getDoc(item.parkingLotRef).then(
+                        (docu) => docu.data()
+                    );
                     return { ...item, ...parkingData };
                 })
             );
@@ -124,52 +125,27 @@ export const onAdminHistoryUpdate = (userId, setHistory) => {
     );
 };
 
-/**
- * Used for getting Reservation data from the Reservation document using user id
- * @param {string} userId
- * @returns Reservation Data
- */
-export const getReservationFromUser = async (userId) => {
-    const ref = collection(db, "reservations");
-    const q = query(ref, where("userId", "==", userId));
-    return await getDocs(q)
-        .then((snapshot) =>
-            snapshot.docs
-                .map((doc) => ({ id: doc.id, ...doc.data() }))
-                .find((doc) => doc !== undefined)
-        )
-        .then(async (documentData) => {
-            if (documentData) {
-                const ref = doc(db, "owner", documentData.parkingLotId);
-                const ownerData = await getDoc(ref).then((snapShot) =>
-                    snapShot.data()
-                );
-                return {
-                    ...documentData,
-                    parkingLot: ownerData,
-                };
-            }
-            return documentData;
-        });
-};
-
 export const onUserReservationUpdates = (userId, setState) => {
     const reservationQuery = query(
         collection(db, "reservations"),
-        where("userId", "==", userId)
+        where("userRef", "==", doc(db, "user", userId))
     );
     return onSnapshot(reservationQuery, (snapshot) => {
         if (snapshot.docChanges().length == 0) setState(null);
         else
             snapshot.docChanges().forEach(async (change) => {
-                const ref = doc(db, "owner", change.doc.data().parkingLotId);
+                const ref = change.doc.data().parkingLotRef;
                 const ownerData = await getDoc(ref).then((snapShot) =>
                     snapShot.data()
+                );
+                const userData = await getDoc(change.doc.data().userRef).then(
+                    (snapshot) => snapshot.data()
                 );
                 setState(change.type, {
                     ...change.doc.data(),
                     id: change.doc.id,
                     parkingLot: ownerData,
+                    user: userData,
                 });
             });
     });
@@ -178,40 +154,26 @@ export const onUserReservationUpdates = (userId, setState) => {
 export const onOwnerReservationUpdates = (userId, setState) => {
     const reservationQuery = query(
         collection(db, "reservations"),
-        where("parkingLotId", "==", userId)
+        where("parkingLotRef", "==", doc(db, "owner", userId))
     );
-    return onSnapshot(reservationQuery, (snapshot) => {
+    return onSnapshot(reservationQuery, async (snapshot) => {
         if (snapshot.docChanges().length == 0) setState(null);
-        else
-            setState(
-                snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-            );
-    });
-};
+        else {
+            let reservations = [];
 
-export const onReservationUpdates = async (reservationId, getDocData) => {
-    return onSnapshot(
-        doc(db, "reservations", reservationId),
-        async (docSnapshot) => {
-            const reservationData = docSnapshot.data();
-
-            console.log({ changes: docSnapshot.exists() });
-
-            if (reservationData) {
-                const ref = doc(db, "owner", reservationData.parkingLotId);
-                const ownerData = await getDoc(ref).then((snapShot) =>
-                    snapShot.data()
-                );
-                getDocData({
-                    id: docSnapshot.id,
-                    ...reservationData,
-                    parkingLot: ownerData,
+            for (const doc of snapshot.docs) {
+                const parkingSnapshot = await getDoc(doc.data().parkingLotRef);
+                const userSnapshot = await getDoc(doc.data().userRef);
+                reservations.push({
+                    id: doc.id,
+                    ...doc.data(),
+                    user: userSnapshot.data(),
+                    parkingLot: parkingSnapshot.data(),
                 });
-            } else {
-                getDocData(null);
             }
+            setState(reservations);
         }
-    );
+    });
 };
 
 export const completeReservation = async (reservationId) => {
@@ -219,11 +181,11 @@ export const completeReservation = async (reservationId) => {
         doc(db, "reservations", reservationId)
     ).then((snapShot) => ({ id: snapShot.id, ...snapShot.data() }));
 
-    await updateDoc(doc(db, "user", reservationData.userId), {
+    await updateDoc(doc(db, "user", reservationData.userRef.id), {
         history: arrayUnion(reservationData),
     });
 
-    await updateDoc(doc(db, "owner", reservationData.parkingLotId), {
+    await updateDoc(doc(db, "owner", reservationData.parkingLotRef.id), {
         history: arrayUnion(reservationData),
     });
 
