@@ -71,7 +71,7 @@
             aspect-ratio: 1;
             border: none;
             border-radius: 100px;
-            background-color: #9DBA14;
+            background-color: #9dba14;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -79,18 +79,18 @@
     }
 
     .collection-cont {
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
 
         .parking-img-cont {
             margin-top: 1.5rem;
-            
+
             img {
                 width: 100%;
             }
         }
 
         .collection-header {
-            color: rgba(255, 255, 255, 0.70);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 400;
         }
 
@@ -107,7 +107,7 @@
             margin-top: 1.5rem;
 
             .vehicle-type {
-                background-color: #D7D6D6;
+                background-color: #d7d6d6;
                 min-width: 10rem;
                 height: 10rem;
                 border-radius: 7px;
@@ -149,7 +149,6 @@
                         background-color: #5b6d0063;
                     }
                 }
-
             }
         }
 
@@ -162,17 +161,17 @@
             .history-card {
                 min-width: 90%;
                 height: 10rem;
-                background-color: #D7D6D6;
+                background-color: #d7d6d6;
                 padding: 0.9rem;
                 border-radius: 7px;
 
                 p {
-                    color: #106CE5;
+                    color: #106ce5;
                     margin-top: 0.2rem;
                 }
 
                 &.selected {
-                    background-color: #C5EB0D;
+                    background-color: #c5eb0d;
                 }
             }
         }
@@ -185,19 +184,20 @@
 
             .spot-item {
                 height: 4rem;
-                background-color: #D7D6D6;
+                background-color: #d7d6d6;
                 padding: 0.9rem 1.5rem;
                 border-radius: 7px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
-                h4, p {
+                h4,
+                p {
                     margin: 0;
                 }
 
                 &.selected {
-                    background-color: #C5EB0D;
+                    background-color: #c5eb0d;
                 }
             }
         }
@@ -216,7 +216,6 @@
                 width: 7rem;
             }
         }
-
     }
 
     .transaction-btn {
@@ -225,10 +224,10 @@
         font-size: 1.5em;
         padding: 1rem 2rem;
         border-radius: 10px;
-        background-color: #9DBA14;
+        background-color: #9dba14;
 
         &:disabled {
-            background-color: #D7D6D6;
+            background-color: #d7d6d6;
         }
     }
 }
