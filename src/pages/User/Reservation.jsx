@@ -5,7 +5,6 @@ import ParkingLotsList from "../../components/ParkingLotsList";
 import ParkingSpotList from "../../components/ParkingSpotList";
 import ParkingTimeSlot from "../../components/ParkingTimeSlot";
 import { useReservation } from "../../components/contexts/Reservation/hooks";
-import ParkingLotImg from "../../assets/img/cinema-img.png";
 import { GetParkingImage } from "../../api/storage";
 
 function Reservation() {

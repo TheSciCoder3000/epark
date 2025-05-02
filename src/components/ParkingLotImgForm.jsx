@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import ParkingLotImg from "../assets/img/cinema-img.png";
 import { GetParkingImage, SaveParkingImage } from "../api/storage";
 import { useAuth } from "./contexts/Auth/hooks";
 import { FaPen } from "react-icons/fa";
