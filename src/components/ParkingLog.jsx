@@ -8,17 +8,25 @@ const ParkingLog = ({ logs }) => {
                 {logs.length > 0 ? (
                     logs.map((log, index) => (
                         <div key={index} className="admin-parking-log-item">
-                            <h2>{log.user.fullName}</h2>
-                            <p>{log.user.plateNumber}</p>
-                            <p>
-                                {Math.round(
-                                    getDecimalHours(
-                                        log.StartTime.toDate(),
-                                        log.EndTime.toDate()
-                                    )
-                                )}{" "}
-                                Hrs
-                            </p>
+                            <div className="main-info">
+                                <h2>{log.user.fullName}</h2>
+                                <p>{log.user.plateNumber}</p>
+                                <p>
+                                    {Math.round(
+                                        getDecimalHours(
+                                            log.StartTime.toDate(),
+                                            log.EndTime.toDate()
+                                        )
+                                    )}{" "}
+                                    Hrs
+                                </p>
+                            </div>
+                            <div className="sub-info">
+                                <h3 className={`${log.status}`}>
+                                    {log.status.toUpperCase()}
+                                </h3>
+                                <h4>Php {Math.round(log.total)}</h4>
+                            </div>
                         </div>
                     ))
                 ) : (

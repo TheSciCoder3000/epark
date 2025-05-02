@@ -12,18 +12,41 @@
   border-radius: 5px;
   margin-bottom: 1rem;
   display: flex;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .main-info {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
 }
-.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item h2 {
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .main-info h2 {
   font-size: 1.4em;
   line-height: 1.4em;
   margin-bottom: 0.5rem;
 }
-.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item p {
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .main-info p {
   margin: 0;
   font-size: 0.85em;
   color: #aaa;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .sub-info {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .sub-info h3 {
+  font-size: 1.1em;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .sub-info h3.reserved {
+  color: orange;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .sub-info h3.occupied {
+  color: #00b000;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item .sub-info h4 {
+  font-size: 1em;
+  color: #aaa;
+  font-weight: 400;
 }
 .admin-parking-log-cont .admin-parking-log-list .admin-no-records {
   text-align: center;
