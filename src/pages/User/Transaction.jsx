@@ -1,35 +1,33 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import Bkg from "../../assets/img/dash-bkg.png";
-import "../../assets/styles/css/Transaction.css"
-import { differenceInMilliseconds, formatDistance } from 'date-fns';
-import { completeReservation } from '../../api/Firestore';
-import { useReservation } from '../../components/contexts/Reservation/hooks';
+import "../../assets/styles/css/Transaction.css";
+import { formatDistance } from "date-fns";
+import { completeReservation } from "../../api/Firestore";
+import { useReservation } from "../../components/contexts/Reservation/hooks";
+import { getDecimalHours } from "../../utils/Math";
 
 const Transaction = () => {
     const { reservation } = useReservation();
     const navigate = useNavigate();
 
-    if (!reservation) return (
-        <div className="user-loading-cont">
-            <h4>Retrieving Reservation Data...</h4>
-        </div>
-    )
+    if (!reservation)
+        return (
+            <div className="user-loading-cont">
+                <h4>Retrieving Reservation Data...</h4>
+            </div>
+        );
 
     const handlePayment = async () => {
-        if (reservation) completeReservation(reservation.id)
-            .then(transactId => {
-                alert("Payment successful!");
-                navigate(`/Transaction-Success/${transactId}`);
-            })
-            .catch(() => {
-                alert("Something went wrong")
-            })
-    }
-
-    const getDecimalHours = () => {
-        const diffMs = differenceInMilliseconds(reservation.EndTime.toDate(), reservation.StartTime.toDate()); // Get difference in milliseconds
-        return diffMs / (1000 * 60 * 60);
-    }
+        if (reservation)
+            completeReservation(reservation.id)
+                .then((transactId) => {
+                    alert("Payment successful!");
+                    navigate(`/Transaction-Success/${transactId}`);
+                })
+                .catch(() => {
+                    alert("Something went wrong");
+                });
+    };
 
     return (
         <div className="dashboard-cont">
@@ -42,26 +40,47 @@ const Transaction = () => {
                 <div className="transactionDetails">
                     <div className="detail-field">
                         <p>Transaction ID:</p>
-                        <p className='detail-data'>{reservation.id}</p>
+                        <p className="detail-data">{reservation.id}</p>
                     </div>
                     <div className="detail-field">
                         <p>Reserved hours:</p>
-                        <p className='detail-data'>{reservation ? formatDistance(reservation.EndTime.toDate(), reservation.StartTime.toDate()) : null}</p>
+                        <p className="detail-data">
+                            {reservation
+                                ? formatDistance(
+                                      reservation.EndTime.toDate(),
+                                      reservation.StartTime.toDate()
+                                  )
+                                : null}
+                        </p>
                     </div>
                     <div className="detail-field">
                         <p>Slot Number:</p>
-                        <p className='detail-data'>{reservation.parkingSpotId}</p>
+                        <p className="detail-data">
+                            {reservation.parkingSpotId}
+                        </p>
                     </div>
                     <div className="detail-field">
                         <p>Payment Amount:</p>
-                        <p className='detail-data'>Php{(getDecimalHours() * reservation.price).toFixed(2)}</p>
+                        <p className="detail-data">
+                            Php
+                            {(
+                                getDecimalHours(
+                                    reservation.StartTime.toDate(),
+                                    reservation.EndTime.toDate()
+                                ) * reservation.price
+                            ).toFixed(2)}
+                        </p>
                     </div>
                 </div>
-                <button onClick={handlePayment} className='payment-btn'>Pay Now</button>
-                <button onClick={() => navigate("/")} className='cancel-bn'>Cancel</button>
+                <button onClick={handlePayment} className="payment-btn">
+                    Pay Now
+                </button>
+                <button onClick={() => navigate("/")} className="cancel-bn">
+                    Cancel
+                </button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Transaction
+export default Transaction;

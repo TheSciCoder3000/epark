@@ -37,6 +37,13 @@
   font-size: 0.86em;
   color: rgba(169, 169, 169, 0.724);
 }
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .sub-details {
+  display: flex;
+  flex-direction: column;
+}
+.history-cont .previous-transaction-history .transaction-items .prev-trans-item .sub-details .total-detail {
+  color: white;
+}
 .history-cont .previous-transaction-history .transaction-items .prev-trans-item .duration {
   flex: 1;
   color: white;
