@@ -1,0 +1,29 @@
+.revenue-card {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h2,
+    h3,
+    h4,
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        color: #9c9c9c;
+    }
+
+    .revenue-info {
+        .amount {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #27ae60;
+        }
+    }
+
+    .label {
+        font-size: 1.1em;
+        font-weight: 400;
+        color: #9c9c9c;
+    }
+}

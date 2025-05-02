@@ -1,4 +1,3 @@
-import React from "react";
 import "../assets/styles/css/ReservedSlot.css";
 
 const ReservedSlots = ({ reservedSlots = 0, parkedCars = 0 }) => {
@@ -7,11 +6,10 @@ const ReservedSlots = ({ reservedSlots = 0, parkedCars = 0 }) => {
 
     return (
         <div className="card reserved-slot">
-            <h4>Reserved & Parked Slots</h4>
             <div className="slot-info">
-                <span className="number">{totalUsedSlots}</span>
-                <span className="label"> Slots reserved/parked</span>
+                <h2 className="number">{totalUsedSlots}</h2>
             </div>
+            <h4 className="label">Reserved/Parked</h4>
         </div>
     );
 };

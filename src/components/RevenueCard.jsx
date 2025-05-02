@@ -1,11 +1,12 @@
-import React from "react";
 import "../assets/styles/css/RevenueCard.css";
 
 const RevenueCard = ({ title, revenue }) => {
     return (
-        <div className="revenue-card">
-            <h4>{title}</h4>
-            <p className="revenue-amount">${revenue.toLocaleString()}</p>
+        <div className="card revenue-card">
+            <div className="revenue-info">
+                <h2 className="amount">${revenue.toLocaleString()}</h2>
+            </div>
+            <h4 className="label">{title}</h4>
         </div>
     );
 };

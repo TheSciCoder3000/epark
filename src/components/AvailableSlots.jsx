@@ -1,4 +1,3 @@
-import React from "react";
 import "../assets/styles/css/AvailableSlot.css";
 
 const AvailableSlots = ({ totalSlots, parkedCars, reservedSlots }) => {
@@ -8,14 +7,13 @@ const AvailableSlots = ({ totalSlots, parkedCars, reservedSlots }) => {
 
     return (
         <div className="card available-slot">
-            <h4>Available Slots</h4>
             <div className="slot-info">
                 <span className="number">{availableSlots}</span>
-                <span className="label"> Slots available</span>
             </div>
             <div className="progress-bar">
                 <div className="fill" style={{ width: `${percentage}%` }}></div>
             </div>
+            <h2>Available Slots</h2>
         </div>
     );
 };
