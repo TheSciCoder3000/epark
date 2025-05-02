@@ -1,10 +1,9 @@
 import "../../assets/styles/css/AdminParkingLot.css";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Bkg from "../../assets/img/dash-bkg.png";
-import { createParkingSpots, deleteParkingSpot } from '../../api/Firestore';
-import { useAuth } from '../../components/contexts/Auth/hooks';
-import ParkingLotImg from "../../assets/img/cinema-img.png";
-import { BsHandIndexFill } from "react-icons/bs";
+import { createParkingSpots, deleteParkingSpot } from "../../api/Firestore";
+import { useAuth } from "../../components/contexts/Auth/hooks";
+import ParkingLotImgForm from "../../components/ParkingLotImgForm";
 
 const AdminParkingLot = () => {
     const { currentUser } = useAuth();
@@ -13,9 +12,7 @@ const AdminParkingLot = () => {
     const [newLog, setNewLog] = useState({ name: "", type: "", price: 0 });
     const [adding, setAdding] = useState(false);
 
-    useEffect(() => {
-
-    }, [])
+    useEffect(() => {}, []);
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -27,7 +24,7 @@ const AdminParkingLot = () => {
 
     const addParkingLog = () => {
         setAdding(true);
-        if (parkingLog.find(lot => lot.name === newLog.name)) {
+        if (parkingLog.find((lot) => lot.name === newLog.name)) {
             setAdding(false);
             return;
         }
@@ -35,23 +32,21 @@ const AdminParkingLot = () => {
         createParkingSpots(currentUser.uid, {
             name: newLog.name,
             type: newLog.type,
-            price: parseFloat(newLog.price)
-        })
-            .then(() => {
-                console.log([...parkingLog, newLog])
-                setParkingLog([...parkingLog, newLog]);
-                setNewLog({ name: "", type: "", price: 0 });
-                toggleModal();
-                setAdding(false);
-            });
+            price: parseFloat(newLog.price),
+        }).then(() => {
+            console.log([...parkingLog, newLog]);
+            setParkingLog([...parkingLog, newLog]);
+            setNewLog({ name: "", type: "", price: 0 });
+            toggleModal();
+            setAdding(false);
+        });
     };
 
     const deleteParkingLog = (index) => {
-        deleteParkingSpot(currentUser.uid, parkingLog[index].id)
-            .then(() => {
-                const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
-                setParkingLog(updatedParkingLog);
-            });
+        deleteParkingSpot(currentUser.uid, parkingLog[index].id).then(() => {
+            const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
+            setParkingLog(updatedParkingLog);
+        });
     };
 
     return (
@@ -63,14 +58,14 @@ const AdminParkingLot = () => {
 
             {/* Parking Log List */}
             <div className="parking-lots-cont">
-                <h2 className="header">Parking Log</h2>
+                <h2 className="header">Parking Lot</h2>
 
-                <div className="parking-lot-img-cont">
-                    <img src={ParkingLotImg} alt="" />
-                </div>
+                <ParkingLotImgForm />
 
                 <div className="parking-controls-cont">
-                    <button onClick={toggleModal} className="add-parking-btn">+</button>
+                    <button onClick={toggleModal} className="add-parking-btn">
+                        +
+                    </button>
                 </div>
                 <div className="parking-log-container">
                     <ul className="parking-log-list">
@@ -79,7 +74,10 @@ const AdminParkingLot = () => {
                                 Slot: {log.name}
                                 <br />
                                 Type: {log.type}
-                                <button className="delete-btn" onClick={() => deleteParkingLog(index)}>
+                                <button
+                                    className="delete-btn"
+                                    onClick={() => deleteParkingLog(index)}
+                                >
                                     🗑️
                                 </button>
                             </li>
@@ -91,12 +89,39 @@ const AdminParkingLot = () => {
             {/* Bottom Drawer Modal */}
             {isModalOpen && (
                 <div className="modal-overlay" onClick={toggleModal}>
-                    <div className="modal-drawer" onClick={(e) => e.stopPropagation()}>
+                    <div
+                        className="modal-drawer"
+                        onClick={(e) => e.stopPropagation()}
+                    >
                         <h3 style={{ color: "white" }}>Add Parking Log</h3>
-                        <input type="text" name="name" placeholder="Parking Slot Number" value={newLog.name} onChange={handleInputChange} />
-                        <input type="text" name="type" placeholder="Vehicle Type" value={newLog.type} onChange={handleInputChange} />
-                        <input type="number" name="price" placeholder="Price per hour" value={newLog.price} onChange={handleInputChange} />
-                        <button disabled={adding} className="add-btn" onClick={addParkingLog}>Add Log</button>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Parking Slot Number"
+                            value={newLog.name}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="type"
+                            placeholder="Vehicle Type"
+                            value={newLog.type}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="number"
+                            name="price"
+                            placeholder="Price per hour"
+                            value={newLog.price}
+                            onChange={handleInputChange}
+                        />
+                        <button
+                            disabled={adding}
+                            className="add-btn"
+                            onClick={addParkingLog}
+                        >
+                            Add Log
+                        </button>
                     </div>
                 </div>
             )}

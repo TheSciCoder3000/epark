@@ -1,0 +1,27 @@
+.reserved-slot {
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h4 {
+        font-size: 1.1em;
+        font-weight: 400;
+        color: #9c9c9c;
+    }
+
+    .slot-info {
+        .number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    }
+}

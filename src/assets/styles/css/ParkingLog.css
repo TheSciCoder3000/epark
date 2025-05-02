@@ -1,29 +1,31 @@
 .admin-parking-log-cont {
-  padding: 20px;
+  margin-top: 1rem;
 }
-
-.admin-parking-log-list {
+.admin-parking-log-cont .admin-parking-log-list {
   list-style: none;
   padding: 0;
 }
-
-.admin-parking-log-item {
-  background-color: #333;
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item {
+  background-color: #2b2b2b;
   color: white;
-  padding: 20px;
+  padding: 1rem 1.5rem;
   border-radius: 5px;
-  margin-bottom: 15px;
-  font-size: 1.1em;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 200px;
 }
-.admin-parking-log-item div {
-  margin-bottom: 5px;
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item h2 {
+  font-size: 1.4em;
+  line-height: 1.4em;
+  margin-bottom: 0.5rem;
 }
-
-.admin-no-records {
+.admin-parking-log-cont .admin-parking-log-list .admin-parking-log-item p {
+  margin: 0;
+  font-size: 0.85em;
+  color: #aaa;
+}
+.admin-parking-log-cont .admin-parking-log-list .admin-no-records {
   text-align: center;
   padding: 15px;
   color: #aaa;

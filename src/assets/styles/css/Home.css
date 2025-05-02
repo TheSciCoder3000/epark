@@ -67,13 +67,13 @@
   aspect-ratio: 1;
   border: none;
   border-radius: 100px;
-  background-color: #9DBA14;
+  background-color: #9dba14;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .dashboard-cont .collection-cont {
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 .dashboard-cont .collection-cont .parking-img-cont {
   margin-top: 1.5rem;
@@ -97,7 +97,7 @@
   margin-top: 1.5rem;
 }
 .dashboard-cont .collection-cont .vehicle-type-cont .vehicle-type {
-  background-color: #D7D6D6;
+  background-color: #d7d6d6;
   min-width: 10rem;
   height: 10rem;
   border-radius: 7px;
@@ -144,16 +144,16 @@
 .dashboard-cont .collection-cont .parking-history-cont .history-card {
   min-width: 90%;
   height: 10rem;
-  background-color: #D7D6D6;
+  background-color: #d7d6d6;
   padding: 0.9rem;
   border-radius: 7px;
 }
 .dashboard-cont .collection-cont .parking-history-cont .history-card p {
-  color: #106CE5;
+  color: #106ce5;
   margin-top: 0.2rem;
 }
 .dashboard-cont .collection-cont .parking-history-cont .history-card.selected {
-  background-color: #C5EB0D;
+  background-color: #c5eb0d;
 }
 .dashboard-cont .collection-cont .parking-spot-cont {
   display: flex;
@@ -163,18 +163,19 @@
 }
 .dashboard-cont .collection-cont .parking-spot-cont .spot-item {
   height: 4rem;
-  background-color: #D7D6D6;
+  background-color: #d7d6d6;
   padding: 0.9rem 1.5rem;
   border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.dashboard-cont .collection-cont .parking-spot-cont .spot-item h4, .dashboard-cont .collection-cont .parking-spot-cont .spot-item p {
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item h4,
+.dashboard-cont .collection-cont .parking-spot-cont .spot-item p {
   margin: 0;
 }
 .dashboard-cont .collection-cont .parking-spot-cont .spot-item.selected {
-  background-color: #C5EB0D;
+  background-color: #c5eb0d;
 }
 .dashboard-cont .collection-cont .parking-timeslot-cont {
   margin-bottom: 5rem;
@@ -194,8 +195,8 @@
   font-size: 1.5em;
   padding: 1rem 2rem;
   border-radius: 10px;
-  background-color: #9DBA14;
+  background-color: #9dba14;
 }
 .dashboard-cont .transaction-btn:disabled {
-  background-color: #D7D6D6;
+  background-color: #d7d6d6;
 }/*# sourceMappingURL=Home.css.map */
