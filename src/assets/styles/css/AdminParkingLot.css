@@ -15,8 +15,22 @@
   margin-top: 1rem;
   margin-bottom: 3rem;
 }
-.dashboard-cont .parking-lot-img-cont img {
+.dashboard-cont .parking-lot-img-cont .img-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.dashboard-cont .parking-lot-img-cont .img-cont .edit-btn {
+  margin-bottom: 1rem;
+  display: block;
+  background-color: transparent;
+}
+.dashboard-cont .parking-lot-img-cont .img-cont img {
   width: 100%;
+}
+.dashboard-cont .parking-lot-img-cont .upload-btn {
+  display: block;
+  background-color: #282828;
 }
 .dashboard-cont .parking-log-item {
   background-color: #333;
@@ -53,7 +67,8 @@
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.3s ease-out;
 }
-.dashboard-cont .modal-drawer input, .dashboard-cont .modal-drawer select {
+.dashboard-cont .modal-drawer input,
+.dashboard-cont .modal-drawer select {
   width: 100%;
   color: #333;
   padding: 10px;
@@ -64,7 +79,7 @@
 .dashboard-cont .modal-drawer button {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
