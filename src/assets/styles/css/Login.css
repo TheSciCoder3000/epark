@@ -104,4 +104,8 @@
 }
 .login-cont .form-cont form .form-actions button.register-btn {
   background-color: #d9d9d9;
+}
+.login-cont .form-cont form .form-actions button:disabled {
+  background-color: gray;
+  color: white;
 }/*# sourceMappingURL=Login.css.map */

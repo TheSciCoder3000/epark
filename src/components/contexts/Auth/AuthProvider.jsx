@@ -32,7 +32,6 @@ export function AuthProvider({ children }) {
     }, []);
 
     const UpdateParkingLot = (ParkingLotArr) => {
-        console.log({ ParkingLotArr });
         setCurrentUser((userState) => ({
             ...userState,
             lots: ParkingLotArr,

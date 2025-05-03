@@ -34,7 +34,6 @@ const AdminParkingLot = () => {
             type: newLog.type,
             price: parseFloat(newLog.price),
         }).then(() => {
-            console.log([...parkingLog, newLog]);
             setParkingLog([...parkingLog, newLog]);
             UpdateParkingLot([...parkingLog, newLog]);
             setNewLog({ name: "", type: "", price: 0 });

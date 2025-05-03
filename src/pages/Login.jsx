@@ -8,13 +8,18 @@ function Login() {
     const [password, setPassword] = useState("");
     const { currentUser, loading, loginUser } = useAuth();
     const navigate = useNavigate();
+    const [logging, setLogging] = useState(false);
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLogging(true);
         loginUser(email, password)
             .then(() => navigate("/"))
-            .catch(e => console.log(e.message))
-    }
+            .catch((e) => {
+                setLogging(false);
+                alert(e.message);
+            });
+    };
 
     if (loading) return;
 
@@ -30,21 +35,37 @@ function Login() {
                 <form onSubmit={submitHandler} className="form-main">
                     <div className="form-field email-field">
                         <label htmlFor="email">Email</label>
-                        <input type="text" onChange={e => setEmail(e.target.value)} id="email" className="email" />
+                        <input
+                            type="text"
+                            onChange={(e) => setEmail(e.target.value)}
+                            id="email"
+                            className="email"
+                        />
                     </div>
                     <div className="form-field password-field">
                         <label htmlFor="password">Password</label>
-                        <input type="password" onChange={e => setPassword(e.target.value)} id="password" className="password" />
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            id="password"
+                            className="password"
+                        />
                     </div>
 
                     <div className="form-actions">
                         <Link to="/register">Don&apos;t have an account?</Link>
-                        <button className="login-btn" type="submit">LOGIN</button>
+                        <button
+                            className="login-btn"
+                            type="submit"
+                            disabled={logging}
+                        >
+                            LOGIN
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

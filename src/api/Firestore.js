@@ -30,7 +30,6 @@ export const getOwnerDb = async (userId) =>
     getDoc(doc(db, "owner", userId)).then(async (ds) => {
         let ownerData = ds.data();
 
-        console.log({ ownerData });
         ownerData.lots = [];
 
         for (const lotRef of ownerData.lotsRef) {
@@ -106,7 +105,6 @@ export const onUserHistoryUpdate = (userId, setHistory) => {
         let historyData = snapshot.data().history;
         if (!historyData) setHistory([]);
         else {
-            console.log({ historyData });
             historyData = await Promise.all(
                 historyData.map(async (item) => {
                     const parkingData = await getDoc(item.parkingLotRef).then(
@@ -124,7 +122,6 @@ export const onAdminHistoryUpdate = (userId, setHistory) => {
         let historyData = snapshot.data().history;
         if (!historyData) setHistory([]);
         else {
-            console.log({ historyData });
             historyData = await Promise.all(
                 historyData.map(async (item) => {
                     const parkingData = await getDoc(item.parkingLotRef).then(
@@ -205,7 +202,7 @@ export const completeReservation = async (reservationId) => {
         history: arrayUnion(reservationData),
     });
 
-    await deleteDoc(doc(db, "reservations", reservationId)).then(console.log);
+    await deleteDoc(doc(db, "reservations", reservationId));
 
     return reservationData.id;
 };
@@ -222,7 +219,6 @@ export const createParkingSpots = async (userId, parkingInfo) => {
 };
 
 export const deleteParkingSpot = async (userId, parkingid) => {
-    console.log({ parkingid });
     const lotRef = doc(db, "lots", parkingid);
 
     await deleteDoc(lotRef);

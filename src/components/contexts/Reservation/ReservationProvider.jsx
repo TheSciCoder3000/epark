@@ -1,9 +1,14 @@
-
-
-import { ReservationContext } from './hooks'
-import { useAuth } from '../Auth/hooks'
-import { useEffect, useState } from 'react';
-import { addReservation, onUserHistoryUpdate, onAdminHistoryUpdate, onUserReservationUpdates, updateReservationStatus, onOwnerReservationUpdates } from '../../../api/Firestore';
+import { ReservationContext } from "./hooks";
+import { useAuth } from "../Auth/hooks";
+import { useEffect, useState } from "react";
+import {
+    addReservation,
+    onUserHistoryUpdate,
+    onAdminHistoryUpdate,
+    onUserReservationUpdates,
+    updateReservationStatus,
+    onOwnerReservationUpdates,
+} from "../../../api/Firestore";
 
 function ReservationProvider({ children }) {
     const { currentUser, loading } = useAuth();
@@ -14,43 +19,59 @@ function ReservationProvider({ children }) {
     useEffect(() => {
         if (loading || !currentUser) return;
 
-        console.log("adding listeners")
-        const reserve_unsub = currentUser.role == "User" ? onUserReservationUpdates(currentUser.uid, (type, doc) => {
-            if (type == "removed") setReservation(null);
-            else setReservation(doc)
-            setLoading(false);
-        }) :
-            onOwnerReservationUpdates(currentUser.uid, (doc) => {
-                setReservation(doc)
-                setLoading(false);
-            });
+        const reserve_unsub =
+            currentUser.role == "User"
+                ? onUserReservationUpdates(currentUser.uid, (type, doc) => {
+                      if (type == "removed") setReservation(null);
+                      else setReservation(doc);
+                      setLoading(false);
+                  })
+                : onOwnerReservationUpdates(currentUser.uid, (doc) => {
+                      setReservation(doc);
+                      setLoading(false);
+                  });
 
-        const history_unsub = currentUser.role == "User" ?
-            onUserHistoryUpdate(currentUser.uid, setHistory) :
-            onAdminHistoryUpdate(currentUser.uid, setHistory);
+        const history_unsub =
+            currentUser.role == "User"
+                ? onUserHistoryUpdate(currentUser.uid, setHistory)
+                : onAdminHistoryUpdate(currentUser.uid, setHistory);
 
         return () => {
             reserve_unsub();
             history_unsub();
-        }
-    }, [currentUser, loading])
+        };
+    }, [currentUser, loading]);
 
-
-    const createReservation = async (parkingId, parkingSpot, start, end, price) => {
-        addReservation(currentUser.uid, parkingId, parkingSpot, start, end, price);
-    }
+    const createReservation = async (
+        parkingId,
+        parkingSpot,
+        start,
+        end,
+        price
+    ) => {
+        addReservation(
+            currentUser.uid,
+            parkingId,
+            parkingSpot,
+            start,
+            end,
+            price
+        );
+    };
 
     return (
-        <ReservationContext.Provider value={{
-            reservation,
-            history,
-            createReservation,
-            updateReservationStatus,
-            loading: reservationLoading
-        }}>
+        <ReservationContext.Provider
+            value={{
+                reservation,
+                history,
+                createReservation,
+                updateReservationStatus,
+                loading: reservationLoading,
+            }}
+        >
             {children}
         </ReservationContext.Provider>
-    )
+    );
 }
 
-export default ReservationProvider
+export default ReservationProvider;

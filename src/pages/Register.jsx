@@ -14,11 +14,13 @@ function Register() {
     const [plateNumber, setPlateNumber] = useState("");
     const { registerUser } = useAuth();
     const navigate = useNavigate();
+    const [logging, setLogging] = useState(false);
 
     const submitHandler = (e) => {
         e.preventDefault();
 
         if (confirmPassword == password) {
+            setLogging(true);
             const userData =
                 role === "User"
                     ? {
@@ -37,9 +39,12 @@ function Register() {
                           history: [],
                           lotsRef: [],
                       };
-            registerUser(email, password, userData).then(() =>
-                navigate("/login")
-            );
+            registerUser(email, password, userData)
+                .then(() => navigate("/login"))
+                .catch((e) => {
+                    setLogging(false);
+                    alert(e.message);
+                });
         }
     };
 
@@ -162,8 +167,12 @@ function Register() {
 
                     <div className="form-actions">
                         <Link to="/login">Already have an account?</Link>
-                        <button className="register-btn" type="submit">
-                            LOGIN
+                        <button
+                            className="register-btn"
+                            type="submit"
+                            disabled={logging}
+                        >
+                            REGISTER
                         </button>
                     </div>
                 </form>

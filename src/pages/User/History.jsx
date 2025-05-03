@@ -5,14 +5,6 @@ import { useReservation } from "../../components/contexts/Reservation/hooks";
 
 function History() {
     const { history } = useReservation();
-    const navigate = useNavigate();
-
-    const onBackClickHandler = () => {
-        console.log("test");
-        navigate(-1);
-    };
-
-    console.log({ history });
 
     const timeAgo = (end, start) => {
         const minutes = differenceInMinutes(end, start);
