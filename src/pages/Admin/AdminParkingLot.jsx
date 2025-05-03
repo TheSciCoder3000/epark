@@ -6,7 +6,7 @@ import { useAuth } from "../../components/contexts/Auth/hooks";
 import ParkingLotImgForm from "../../components/ParkingLotImgForm";
 
 const AdminParkingLot = () => {
-    const { currentUser } = useAuth();
+    const { currentUser, UpdateParkingLot } = useAuth();
     const [parkingLog, setParkingLog] = useState(currentUser.lots);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newLog, setNewLog] = useState({ name: "", type: "", price: 0 });
@@ -36,6 +36,7 @@ const AdminParkingLot = () => {
         }).then(() => {
             console.log([...parkingLog, newLog]);
             setParkingLog([...parkingLog, newLog]);
+            UpdateParkingLot([...parkingLog, newLog]);
             setNewLog({ name: "", type: "", price: 0 });
             toggleModal();
             setAdding(false);
@@ -46,6 +47,7 @@ const AdminParkingLot = () => {
         deleteParkingSpot(currentUser.uid, parkingLog[index].id).then(() => {
             const updatedParkingLog = parkingLog.filter((_, i) => i !== index);
             setParkingLog(updatedParkingLog);
+            UpdateParkingLot(updatedParkingLog);
         });
     };
 

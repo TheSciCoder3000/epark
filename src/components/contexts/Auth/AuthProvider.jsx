@@ -13,8 +13,9 @@ export function AuthProvider({ children }) {
     const initializeUser = async (user) => {
         setLoading(true);
         if (user) {
-            const userData = await getUserDb(user.uid)
-                .then((data) => data ? data : getOwnerDb(user.uid));
+            const userData = await getUserDb(user.uid).then((data) =>
+                data ? data : getOwnerDb(user.uid)
+            );
 
             setCurrentUser({ ...userData, uid: user.uid });
             setLoggedIn(true);
@@ -23,22 +24,32 @@ export function AuthProvider({ children }) {
             setLoggedIn(false);
         }
         setLoading(false);
-    }
+    };
 
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, initializeUser);
         return unsub;
-    }, [])
+    }, []);
 
+    const UpdateParkingLot = (ParkingLotArr) => {
+        console.log({ ParkingLotArr });
+        setCurrentUser((userState) => ({
+            ...userState,
+            lots: ParkingLotArr,
+        }));
+    };
     return (
-        <AuthContext.Provider value={{
-            currentUser,
-            loggedIn,
-            loading,
-            registerUser,
-            loginUser,
-            logOutUser,
-        }}>
+        <AuthContext.Provider
+            value={{
+                currentUser,
+                loggedIn,
+                loading,
+                registerUser,
+                loginUser,
+                logOutUser,
+                UpdateParkingLot,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
