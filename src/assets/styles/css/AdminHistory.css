@@ -1,107 +1,117 @@
-.total-revenue-cont {
+.admin-history-cont {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  padding-top: 1.5rem;
+  overflow: auto;
+}
+.admin-history-cont .home-background {
+  z-index: -10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+.admin-history-cont .home-background .overlay {
+  background-color: rgba(0, 0, 0, 0.78);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+.admin-history-cont .home-background img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.admin-history-cont .total-revenue-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
 }
-.total-revenue-cont .revenue-counter {
+.admin-history-cont .total-revenue-cont .revenue-counter {
   font-size: 3em;
   color: #c5eb0d;
   margin: 0;
   margin-bottom: 0.8rem;
 }
-.total-revenue-cont .desc {
+.admin-history-cont .total-revenue-cont .desc {
   font-size: 1.2em;
   color: #a6a6a6;
 }
-
-/* Page Styling */
-.history-title {
-  font-size: 0.9em;
-  font-weight: 400;
-  color: gray;
+.admin-history-cont .transaction-list-cont {
+  flex: 1;
+  padding: 1rem;
+  background-color: #2b2b2b;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  /* Page Styling */
+  /* Responsive Table */
 }
-
-/* Responsive Table */
-.history-container {
+.admin-history-cont .transaction-list-cont .history-title {
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #f1f1f1;
+}
+.admin-history-cont .transaction-list-cont .filter-cont {
+  width: auto;
+  overflow-x: auto;
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  scrollbar-width: none;
+}
+.admin-history-cont .transaction-list-cont .filter-cont .filter-btn {
+  font-size: 0.8em;
+  line-height: 0.8em;
+  background-color: transparent;
+  border: 1px solid #4f4f4f;
+  padding: 0.4rem 1.5rem;
+  border-radius: 5rem;
+  color: rgb(200, 200, 200);
+}
+.admin-history-cont .transaction-list-cont .filter-cont .filter-btn.active {
+  background-color: #4f4f4f;
+}
+.admin-history-cont .transaction-list-cont hr {
+  margin: 0.6rem 0;
+}
+.admin-history-cont .transaction-list-cont .history-container {
   width: 100%;
   margin: 20px auto;
   overflow-x: auto;
 }
-.history-container .transaction-cont {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont {
   display: flex;
   margin-bottom: 2.5rem;
 }
-.history-container .transaction-cont p {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont p {
   font-size: 0.95em;
-  color: #979797;
+  color: #7f7f7f;
 }
-.history-container .transaction-cont .main-info {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont .main-info {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
-.history-container .transaction-cont .main-info h2 {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont .main-info h2 {
   font-size: 1.3em;
-  color: #cccccc;
+  color: #acacac;
+  font-weight: 400;
 }
-.history-container .transaction-cont .sub-info {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont .sub-info {
   display: flex;
   flex-direction: column;
   align-items: end;
 }
-.history-container .transaction-cont .sub-info h3 {
+.admin-history-cont .transaction-list-cont .history-container .transaction-cont .sub-info h3 {
   font-size: 1em;
   color: #00bb00;
-}
-
-.history-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.history-table th,
-.history-table td {
-  padding: 12px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.history-table th {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/* Paid / Unpaid Labels */
-.paid {
-  color: #4caf50;
-  font-weight: bold;
-}
-
-.unpaid {
-  color: #ff5733;
-  font-weight: bold;
-}
-
-/* Mobile-Friendly Table - Cards */
-@media screen and (max-width: 768px) {
-  .history-table thead {
-    display: none;
-  }
-  .history-table .mobile-card td {
-    display: block;
-    width: 100%;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 12px;
-    text-align: left;
-  }
-  .card-content p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: aliceblue;
-  }
 }/*# sourceMappingURL=AdminHistory.css.map */

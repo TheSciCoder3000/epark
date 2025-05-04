@@ -87,6 +87,7 @@ function Reservation() {
                     <ParkingTimeSlot
                         onStartChange={setStart}
                         onEndChange={setEnd}
+                        disabledDates={selectedParkingSpot.reservations}
                     />
                 </div>
             )}

@@ -46,12 +46,40 @@ export const getParkingLots = async () => {
             querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
         )
         .then(async (data) => {
+            const reservations = await getDocs(
+                collection(db, "reservations")
+            ).then((querySnapshot) =>
+                querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+            );
             for (const owner of data) {
                 owner.lots = [];
 
                 for (const lotRef of owner.lotsRef) {
-                    const lotData = await getDoc(lotRef);
-                    owner.lots.push(lotData.data());
+                    const lotData = await getDoc(lotRef).then((snapshot) =>
+                        snapshot.data()
+                    );
+
+                    owner.lots.push({
+                        ...lotData,
+                        reservations: reservations.reduce(
+                            (reservationList, reservationItem) => {
+                                if (
+                                    reservationItem.parkingSpotId !=
+                                        lotData.name ||
+                                    owner.id != reservationItem.parkingLotRef.id
+                                )
+                                    return reservationList;
+                                return [
+                                    ...reservationList,
+                                    {
+                                        start: reservationItem.StartTime.toDate(),
+                                        end: reservationItem.EndTime.toDate(),
+                                    },
+                                ];
+                            },
+                            []
+                        ),
+                    });
                 }
             }
 
